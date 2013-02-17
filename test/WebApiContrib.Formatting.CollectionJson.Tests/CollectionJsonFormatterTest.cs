@@ -19,11 +19,25 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
             formatter.CanReadType(typeof(WriteDocument)).ShouldBeTrue();
         }
 
+        [Fact]
+        public void WhenTypeIsWriteDocumentShouldBeAbleToWrite()
+        {
+            formatter.CanWriteType(typeof(WriteDocument)).ShouldBeTrue();
+        }
+
+
 		[Fact]
+        public void WhenTypeIsReadDocumentShouldBeAbleToRead()
+        {
+            formatter.CanReadType(typeof(ReadDocument)).ShouldBeTrue();
+        }
+
+        [Fact]
         public void WhenTypeIsReadDocumentShouldBeAbleToWrite()
         {
             formatter.CanWriteType(typeof(ReadDocument)).ShouldBeTrue();
         }
+
 
         [Fact]
         public void WhenTypeIsStringShouldNotBeAbleToRead()
