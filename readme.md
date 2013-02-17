@@ -21,7 +21,7 @@ public class FriendsController : CollectionJsonController<Friend>
 {
     private IFriendRepository repo;
 
-    public FriendsController(IFriendRepository repo, ICollectionJsonDocumentWriter<Friend> builder, ICollectionJsonDocumentReader<Friend> transformer)
+    public FriendsController(IFriendRepository repo, ICollectionJsonDocumentWriter<Friend> writer, ICollectionJsonDocumentReader<Friend> reader)
         :base(builder, transformer)
     {
         this.repo = repo;
