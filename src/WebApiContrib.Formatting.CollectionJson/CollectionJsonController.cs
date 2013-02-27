@@ -8,7 +8,15 @@ using System.Web.Http;
 
 namespace WebApiContrib.Formatting.CollectionJson
 {
-    public abstract class CollectionJsonController<TData> : ApiController 
+    public abstract class CollectionJsonController<TData> : CollectionJsonController<TData,int>
+    {
+        protected CollectionJsonController(ICollectionJsonDocumentWriter<TData> writer, ICollectionJsonDocumentReader<TData> reader, string routeName = "DefaultApi") :
+            base(writer, reader, routeName)
+        {
+        }
+    }
+
+    public abstract class CollectionJsonController<TData,TId> : ApiController 
     {
         private CollectionJsonFormatter formatter = new CollectionJsonFormatter();
         private string routeName;
@@ -47,7 +55,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             return response;
         }
 
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get(TId id)
         {
             var response = new HttpResponseMessage();
             var data = this.Read(id, response);
@@ -63,7 +71,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             return response;
         }
 
-        public HttpResponseMessage Put(int id, WriteDocument document)
+        public HttpResponseMessage Put(TId id, WriteDocument document)
         {
             var response = new HttpResponseMessage();
             var data = this.Update(id, reader.Read(document), response);
@@ -72,7 +80,7 @@ namespace WebApiContrib.Formatting.CollectionJson
         }
 
         [AcceptVerbs("DELETE")]
-        public HttpResponseMessage Remove(int id)
+        public HttpResponseMessage Remove(TId id)
         {
             var response = new HttpResponseMessage();
             Delete(id, response);
@@ -84,7 +92,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual TData Read(int id, HttpResponseMessage response)
+        protected virtual TData Read(TId id, HttpResponseMessage response)
         {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
@@ -94,11 +102,12 @@ namespace WebApiContrib.Formatting.CollectionJson
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual TData Update(int id, TData data, HttpResponseMessage response) {
+        protected virtual TData Update(TId id, TData data, HttpResponseMessage response)
+        {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual void Delete(int id, HttpResponseMessage response)
+        protected virtual void Delete(TId id, HttpResponseMessage response)
         {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
