@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Builder;
+using WebApiContrib.CollectionJson;
 using WebApiContrib.Formatting.CollectionJson.Controllers;
 using WebApiContrib.Formatting.CollectionJson.Infrastructure;
 using WebApiContrib.Formatting.CollectionJson.Models;

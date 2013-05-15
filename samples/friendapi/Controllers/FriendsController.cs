@@ -1,4 +1,5 @@
-﻿using WebApiContrib.Formatting.CollectionJson.Infrastructure;
+﻿using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Infrastructure;
 using WebApiContrib.Formatting.CollectionJson.Models;
 using WebApiContrib.Formatting.CollectionJson;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Web.Http;
 using System.Net.Http;
 using System.Net;
+using WebApiContrib.Formatting.CollectionJson.Server;
 
 namespace WebApiContrib.Formatting.CollectionJson.Controllers
 {

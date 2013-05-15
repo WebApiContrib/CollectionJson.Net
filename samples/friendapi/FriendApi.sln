@@ -3,14 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendApi", "FriendApi.csproj", "{EAB2A98D-2059-45B2-8DFF-42B8326D5531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson", "..\..\src\WebApiContrib.Formatting.CollectionJson\WebApiContrib.Formatting.CollectionJson.csproj", "{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B005A23-F5E8-4D0F-98C9-3D260C2C80E3}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.CollectionJson", "..\..\src\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj", "{B9F7BC64-7924-4928-910D-2E9E03DC682F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Client", "..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj", "{E86C985A-ECB3-4065-98C3-CBB2039C7170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Server", "..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj", "{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,14 @@ Global
 		{EAB2A98D-2059-45B2-8DFF-42B8326D5531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB2A98D-2059-45B2-8DFF-42B8326D5531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB2A98D-2059-45B2-8DFF-42B8326D5531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
