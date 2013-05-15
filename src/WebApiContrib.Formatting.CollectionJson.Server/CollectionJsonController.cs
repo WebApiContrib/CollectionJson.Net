@@ -5,10 +5,19 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using WebApiContrib.CollectionJson;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace WebApiContrib.Formatting.CollectionJson.Server
 {
-    public abstract class CollectionJsonController<TData> : ApiController 
+    public abstract class CollectionJsonController<TData> : CollectionJsonController<TData, int>
+    {
+        protected CollectionJsonController(ICollectionJsonDocumentWriter<TData> writer, ICollectionJsonDocumentReader<TData> reader, string routeName = "DefaultApi") :
+            base(writer, reader, routeName)
+        {
+        }
+    }
+
+    public abstract class CollectionJsonController<TData, TId> : ApiController
     {
         private CollectionJsonFormatter formatter = new CollectionJsonFormatter();
         private string routeName;
@@ -28,7 +37,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             base.Initialize(controllerContext);
         }
 
-       
+
         private string ControllerName
         {
             get { return this.ControllerContext.ControllerDescriptor.ControllerName; }
@@ -47,11 +56,11 @@ namespace WebApiContrib.Formatting.CollectionJson
             return response;
         }
 
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get(TId id)
         {
             var response = new HttpResponseMessage();
             var data = this.Read(id, response);
-            response.Content = GetDocumentContent(writer.Write(new[]{data}));
+            response.Content = GetDocumentContent(writer.Write(new[] { data }));
             return response;
         }
 
@@ -63,16 +72,16 @@ namespace WebApiContrib.Formatting.CollectionJson
             return response;
         }
 
-        public HttpResponseMessage Put(int id, WriteDocument document)
+        public HttpResponseMessage Put(TId id, WriteDocument document)
         {
             var response = new HttpResponseMessage();
             var data = this.Update(id, reader.Read(document), response);
-            response.Content = GetDocumentContent(writer.Write(new TData[]{data}));
+            response.Content = GetDocumentContent(writer.Write(new TData[] { data }));
             return response;
         }
 
         [AcceptVerbs("DELETE")]
-        public HttpResponseMessage Remove(int id)
+        public HttpResponseMessage Remove(TId id)
         {
             var response = new HttpResponseMessage();
             Delete(id, response);
@@ -84,7 +93,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual TData Read(int id, HttpResponseMessage response)
+        protected virtual TData Read(TId id, HttpResponseMessage response)
         {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
@@ -94,11 +103,12 @@ namespace WebApiContrib.Formatting.CollectionJson
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual TData Update(int id, TData data, HttpResponseMessage response) {
+        protected virtual TData Update(TId id, TData data, HttpResponseMessage response)
+        {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
 
-        protected virtual void Delete(int id, HttpResponseMessage response)
+        protected virtual void Delete(TId id, HttpResponseMessage response)
         {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }

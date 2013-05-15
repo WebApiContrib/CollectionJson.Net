@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{11FA80C1-A5DC-4856-983E-AF6EADB4CCC4}</ProjectGuid>
+    <ProjectGuid>{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApiContrib.Formatting.CollectionJson.Tests</RootNamespace>
-    <AssemblyName>WebApiContrib.Formatting.CollectionJson.Tests</AssemblyName>
+    <RootNamespace>WebApiContrib.Formatting.CollectionJson.Server</RootNamespace>
+    <AssemblyName>WebApiContrib.Formatting.CollectionJson.Server</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\samples\friendapi\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,51 +32,47 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Moq">
-      <HintPath>..\..\src\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\src\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Should">
-      <HintPath>..\..\src\packages\Should.1.1.12.0\lib\Should.dll</HintPath>
+      <HintPath>..\..\samples\friendapi\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+      <HintPath>..\..\samples\friendapi\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\..\samples\friendapi\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <HintPath>..\..\samples\friendapi\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\samples\friendapi\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit">
-      <HintPath>..\..\src\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionJsonControllerTests.cs" />
-    <Compile Include="ExtensiontsTests.cs" />
+    <Compile Include="CollectionJsonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionJsonFormatterTest.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson\WebApiContrib.Formatting.CollectionJson.csproj">
-      <Project>{f606afbf-1ada-40c5-9cde-5e6e9f2e3f77}</Project>
-      <Name>WebApiContrib.Formatting.CollectionJson</Name>
+    <ProjectReference Include="..\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj">
+      <Project>{b9f7bc64-7924-4928-910d-2e9e03dc682f}</Project>
+      <Name>WebApiContrib.CollectionJson</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj">
+      <Project>{e86c985a-ecb3-4065-98c3-cbb2039c7170}</Project>
+      <Name>WebApiContrib.Formatting.CollectionJson.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

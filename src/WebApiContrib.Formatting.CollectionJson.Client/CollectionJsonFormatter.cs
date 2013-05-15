@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Text;
+using WebApiContrib.CollectionJson;
 
 namespace WebApiContrib.Formatting.CollectionJson
 {

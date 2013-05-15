@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using WebApiContrib.CollectionJson;
 using Xunit;
 using Should;
 
-namespace WebApiContrib.Formatting.CollectionJson.Tests
+namespace WebApiContrib.Formatting.CollectionJson.Client.Tests
 {
     public class CollectionJsonFormatterTest
     {

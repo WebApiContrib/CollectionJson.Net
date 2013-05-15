@@ -7,6 +7,9 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
+using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Server;
+using WebApiContrib.Testing;
 using Xunit;
 using Should;
 using Moq;
@@ -20,7 +23,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         private Mock<ICollectionJsonDocumentWriter<string>> writer;
         private TestController controller;
         private CollectionJsonFormatter formatter = new CollectionJsonFormatter();
-        private HttpControllerContext context;
         private ReadDocument testReadDocument;
         private WriteDocument testWriteDocument;
  
@@ -35,23 +37,9 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
 
             writer.Setup(w => w.Write(It.IsAny<IEnumerable<string>>())).Returns(testReadDocument);
             reader.Setup(r => r.Read(It.IsAny<WriteDocument>())).Returns("Test");
-            Configure();
-        }
-
-        private void Configure()
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/test/");
-            var config = new HttpConfiguration();
-            config.Formatters.Add(new CollectionJsonFormatter());
-            var route = config.Routes.MapHttpRoute("DefaultApi", "{controller}/{id}", new { id = RouteParameter.Optional });
-            var routeData = new HttpRouteData(route, new HttpRouteValueDictionary { { "controller", "test" } });
-
             controller = new TestController(writer.Object, reader.Object);
-            controller.ControllerContext = new HttpControllerContext(config, routeData, request);
-            controller.ControllerContext.ControllerDescriptor = new HttpControllerDescriptor(config, "test", typeof(TestController));
-            controller.Request = request;
-            controller.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = config;
-            controller.Request.Properties.Add(HttpPropertyKeys.HttpRouteDataKey, routeData);
+            controller.ConfigureForTesting(new HttpRequestMessage(HttpMethod.Get, "http://localhost/test/"));
+            controller.Configuration.Formatters.Add(new CollectionJsonFormatter());
         }
 
         [Fact]

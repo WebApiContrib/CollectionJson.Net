@@ -1,4 +1,5 @@
-﻿using WebApiContrib.Formatting.CollectionJson.Models;
+﻿using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Models;
 using WebApiContrib.Formatting.CollectionJson;
 using System;
 using System.Collections.Generic;

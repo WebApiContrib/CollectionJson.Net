@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using Should;
-using WebApiContrib.Formatting.CollectionJson;
 
-namespace WebApiContrib.Formatting.CollectionJson.Tests
+namespace WebApiContrib.CollectionJson.Tests
 {
-    public class ExtensiontsTests
+    public class ExtensionsTests
     {
         [Fact]
         public void WhenRetrievingLinkByRelAndLinkIsPresentShouldReturnIt()
