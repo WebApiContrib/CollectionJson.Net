@@ -1,8 +1,11 @@
 ﻿using Autofac;
+
 using Autofac.Integration.WebApi;
 using FriendApi.Infrastructure;
 using FriendApi.Models;
-using WebApiContrib.CollectionJson;
+
+using Autofac.Builder;
+using CollectionJson.Controllers;
 using System.Web.Http;
 
 namespace FriendApi
@@ -26,6 +29,8 @@ namespace FriendApi
             var resolver = new AutofacWebApiDependencyResolver(container);
             
             config.DependencyResolver = resolver;
+            config.Formatters.Add(new NegotiatingCollectionJsonFormatter());
+         
         }
 
     }

@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Friends2Controller.cs" />
+    <Compile Include="Controllers\Friends3Controller.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Infrastructure\FriendDocumentWriter.cs" />
     <Compile Include="Infrastructure\FriendDocumentReader.cs" />
@@ -86,6 +88,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj">
       <Project>{E86C985A-ECB3-4065-98C3-CBB2039C7170}</Project>
+      <Project>{e86c985a-ecb3-4065-98c3-cbb2039c7170}</Project>
       <Name>WebApiContrib.Formatting.CollectionJson.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj">
