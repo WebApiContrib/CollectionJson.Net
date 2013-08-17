@@ -88,7 +88,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
             return response;
         }
 
-        protected virtual int Create(TData data, HttpResponseMessage response)
+        protected virtual TId Create(TData data, HttpResponseMessage response)
         {
             throw new HttpResponseException(System.Net.HttpStatusCode.NotImplemented);
         }
