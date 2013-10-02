@@ -23,12 +23,13 @@ namespace WebApiContrib.Formatting.CollectionJson.Controllers
             this.repo = repo;
         }
 
-        protected override int Create(Friend friend, HttpResponseMessage response)
+        protected override int Create(IWriteDocument writeDocument, HttpResponseMessage response)
         {
+            var friend = Reader.Read(writeDocument);
             return repo.Add(friend);
         }
 
-        protected override IEnumerable<Friend> Read(HttpResponseMessage response)
+        protected override IReadDocument Read(HttpResponseMessage response)
         {
             return repo.GetAll();
         }
