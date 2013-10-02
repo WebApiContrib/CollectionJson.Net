@@ -15,22 +15,23 @@ namespace WebApiContrib.Formatting.CollectionJson
     {
         public CollectionJsonFormatter()
         {
-            this.SupportedMediaTypes.Clear();
-            this.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/vnd.collection+json"));
-            this.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            this.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            this.SerializerSettings.ContractResolver =
+            SupportedMediaTypes.Clear();
+            SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/vnd.collection+json"));
+            SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            SerializerSettings.ContractResolver =
                         new CamelCasePropertyNamesContractResolver();
         }
 
         public override bool CanWriteType(Type type)
         {
-            return (type == typeof(ReadDocument) || type == typeof(WriteDocument));
+            return (typeof(IReadDocument).IsAssignableFrom(type) || typeof (IWriteDocument).IsAssignableFrom(type));
         }
 
         public override bool CanReadType(Type type)
         {
-            return (type == typeof(ReadDocument) || type == typeof(WriteDocument));
+            return (typeof(IReadDocument).IsAssignableFrom(type) || typeof(IWriteDocument).IsAssignableFrom(type));
         }
+
     }
 }

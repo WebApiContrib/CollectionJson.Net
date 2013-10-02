@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebApiContrib.CollectionJson
 {
-    public class WriteDocument
+    public class WriteDocument : IWriteDocument
     {
         public Template Template { get; set; }
     }
