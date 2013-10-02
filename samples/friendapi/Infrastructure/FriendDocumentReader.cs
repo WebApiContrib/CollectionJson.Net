@@ -9,7 +9,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Infrastructure
 {
     public class FriendDocumentReader : ICollectionJsonDocumentReader<Friend>
     {
-        public Friend Read(WriteDocument document)
+        public Friend Read(IWriteDocument document)
         {
             var template = document.Template;
             var friend = new Friend();

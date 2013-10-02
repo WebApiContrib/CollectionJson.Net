@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebApiContrib.CollectionJson
 {
-    public class ReadDocument
+    public class ReadDocument : IReadDocument
     {
         public ReadDocument()
         {

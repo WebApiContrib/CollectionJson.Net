@@ -10,7 +10,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Infrastructure
 {
     public class FriendDocumentWriter : ICollectionJsonDocumentWriter<Friend>
     {
-        public ReadDocument Write(IEnumerable<Friend> friends)
+        public IReadDocument Write(IEnumerable<Friend> friends)
         {
             var document = new ReadDocument();
             var collection = new Collection { Version = "1.0", Href = new Uri("http://example.org/friends/") };

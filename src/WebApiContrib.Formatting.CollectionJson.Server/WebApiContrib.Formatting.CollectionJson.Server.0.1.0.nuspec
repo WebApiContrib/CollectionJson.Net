@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>WebApiContrib.Formatting.CollectionJson.Server</id>
+        <version>0.1.0</version>
+        <title>Collection+Json Web Api server extensions</title>
+        <authors>Administrator</authors>
+        <owners>Glenn Block</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Includes a CollectionJsonController for ASP.NET Web Api which implements the full Collection+Json protocol and format.</description>
+        <summary>Collection+Json extensions for ASP.NET Web Api.</summary>
+        <copyright>Glenn Block 2013</copyright>
+        <tags>collectionjson aspnetwebapi</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="Microsoft.AspNet.WebApi.Core" version="4.0.30506.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net40\WebApiContrib.Formatting.CollectionJson.Server.dll" target="lib\net40\WebApiContrib.Formatting.CollectionJson.Server.dll" />
+    </files>
+</package>
