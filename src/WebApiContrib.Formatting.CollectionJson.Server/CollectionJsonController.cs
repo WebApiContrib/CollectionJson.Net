@@ -33,7 +33,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
 
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
         {
-            controllerContext.Configuration.Formatters.Add(formatter);
+            controllerContext.Configuration.Formatters.Insert(0,formatter);
             base.Initialize(controllerContext);
         }
 
