@@ -19,7 +19,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
 
     public abstract class CollectionJsonController<TData, TId> : ApiController
     {
-        private CollectionJsonFormatter formatter = new CollectionJsonFormatter();
         private string routeName;
         protected ICollectionJsonDocumentWriter<TData> Writer { get; set; }
         protected ICollectionJsonDocumentReader<TData> Reader { get; set; }
@@ -33,7 +32,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
 
         protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
         {
-            controllerContext.Configuration.Formatters.Insert(0,formatter);
+            controllerContext.Configuration.Formatters.Insert(0,new CollectionJsonFormatter());
             base.Initialize(controllerContext);
         }
 
@@ -43,16 +42,11 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
             get { return this.ControllerContext.ControllerDescriptor.ControllerName; }
         }
 
-        private ObjectContent GetDocumentContent(IReadDocument document)
-        {
-            return new ObjectContent<IReadDocument>(document, formatter, "application/vnd.collection+json");
-        }
-
         public HttpResponseMessage Get()
         {
             var response = new HttpResponseMessage();
             var readDocument = this.Read(response);
-            response.Content = GetDocumentContent(readDocument);
+            response.Content = readDocument.ToObjectContent();
             return response;
         }
 
@@ -60,15 +54,13 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
         {
             var response = new HttpResponseMessage();
             var readDocument = this.Read(id, response);
-            //response.Content = GetDocumentContent(Writer.Write(new[] { data }));
-            response.Content = GetDocumentContent(readDocument);
+            response.Content = readDocument.ToObjectContent();
             return response;
         }
 
         public HttpResponseMessage Post(IWriteDocument document)
         {
             var response = new HttpResponseMessage(HttpStatusCode.Created);
-            //var id = Create(Reader.Read(document), response);
             var id = Create(document, response);
             response.Headers.Location = new Uri(Url.Link(this.routeName, new { controller = this.ControllerName, id = id }));
             return response;
@@ -77,10 +69,8 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
         public HttpResponseMessage Put(TId id, IWriteDocument document)
         {
             var response = new HttpResponseMessage();
-            //var data = this.Update(id, Reader.Read(document), response);
             var readDocument = this.Update(id, document, response);
-            //response.Content = GetDocumentContent(Writer.Write(new TData[] { data }));
-            response.Content = GetDocumentContent(readDocument);
+            response.Content = readDocument.ToObjectContent();
             return response;
         }
 
