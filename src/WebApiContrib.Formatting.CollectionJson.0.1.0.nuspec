@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>WebApiContrib.Formatting.CollectionJson</id>
+        <version>0.1.0</version>
+        <title>Collection+Json</title>
+        <authors>Glenn Block</authors>
+        <owners>Glenn Block</owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+        <projectUrl>https://github.com/WebApiContrib/WebApiContrib.Formatting.CollectionJson</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Meta package which pulls in the new Collection+Json packages</description>
+        <summary>Contains an API for working with CJ documents as well as hosting a CJ server</summary>
+        <copyright>2013 Glenn Block</copyright>
+        <tags>collectionjson webapi</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="WebApiContrib.CollectionJson.Server" version="0.1.0.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+    </files>
+</package>
