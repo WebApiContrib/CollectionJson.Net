@@ -1,12 +1,9 @@
-﻿using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Models;
-using WebApiContrib.Formatting.CollectionJson;
+﻿using FriendApi.Models;
+using WebApiContrib.CollectionJson;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace WebApiContrib.Formatting.CollectionJson.Infrastructure
+namespace FriendApi.Infrastructure
 {
     public class FriendDocumentWriter : ICollectionJsonDocumentWriter<Friend>
     {
@@ -23,12 +20,13 @@ namespace WebApiContrib.Formatting.CollectionJson.Infrastructure
                 var item = new Item { Href = new Uri("http://example.org/friends/" + friend.ShortName) };
                 item.Data.Add(new Data { Name = "full-name", Value = friend.FullName, Prompt = "Full Name" });
                 item.Data.Add(new Data { Name = "email", Value = friend.Email, Prompt = "Email" });
+                item.Data.Add(new Data{ Name = "short-name", Value = friend.ShortName, Prompt = "Short Name"});
                 item.Links.Add(new Link { Rel = "blog", Href = friend.Blog, Prompt = "Blog" });
                 item.Links.Add(new Link { Rel = "avatar", Href = friend.Avatar, Prompt = "Avatar", Render = "Image" });
                 collection.Items.Add(item);
             }
 
-            var query = new Query { Rel = "search", Href = new Uri("http://example.org/friends/search"), Prompt = "Search" };
+            var query = new Query { Rel = "search", Href = new Uri("/friends", UriKind.Relative), Prompt = "Search" };
             query.Data.Add(new Data { Name = "name" });
             collection.Queries.Add(query);
 

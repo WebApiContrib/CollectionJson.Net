@@ -9,13 +9,12 @@ using System.Net.Http.Formatting;
 using System.Text;
 using WebApiContrib.CollectionJson;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace WebApiContrib.Formatting.CollectionJson.Client
 {
     public class CollectionJsonFormatter : JsonMediaTypeFormatter
     {
         public CollectionJsonFormatter()
         {
-            SupportedMediaTypes.Clear();
             SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/vnd.collection+json"));
             SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
@@ -25,13 +24,12 @@ namespace WebApiContrib.Formatting.CollectionJson
 
         public override bool CanWriteType(Type type)
         {
-            return (typeof(IReadDocument).IsAssignableFrom(type) || typeof (IWriteDocument).IsAssignableFrom(type));
+            return base.CanWriteType(type) && (typeof(IReadDocument).IsAssignableFrom(type) || typeof (IWriteDocument).IsAssignableFrom(type));
         }
 
         public override bool CanReadType(Type type)
         {
-            return (typeof(IReadDocument).IsAssignableFrom(type) || typeof(IWriteDocument).IsAssignableFrom(type));
+            return base.CanReadType(type) && (typeof(IReadDocument).IsAssignableFrom(type) || typeof(IWriteDocument).IsAssignableFrom(type));
         }
-
     }
 }

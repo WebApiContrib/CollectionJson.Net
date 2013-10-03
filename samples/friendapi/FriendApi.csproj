@@ -7,8 +7,8 @@
     <ProjectGuid>{EAB2A98D-2059-45B2-8DFF-42B8326D5531}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CollectionJson</RootNamespace>
-    <AssemblyName>collection_json</AssemblyName>
+    <RootNamespace>FriendApi</RootNamespace>
+    <AssemblyName>FriendApi</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
@@ -85,6 +85,10 @@
     <ProjectReference Include="..\..\src\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj">
       <Project>{B9F7BC64-7924-4928-910D-2E9E03DC682F}</Project>
       <Name>WebApiContrib.CollectionJson</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj">
+      <Project>{E86C985A-ECB3-4065-98C3-CBB2039C7170}</Project>
+      <Name>WebApiContrib.Formatting.CollectionJson.Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj">
       <Project>{f606afbf-1ada-40c5-9cde-5e6e9f2e3f77}</Project>

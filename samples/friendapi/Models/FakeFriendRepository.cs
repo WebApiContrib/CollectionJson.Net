@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace WebApiContrib.Formatting.CollectionJson.Models
+namespace FriendApi.Models
 {
     public class FakeFriendRepository : IFriendRepository
     {
@@ -12,9 +11,9 @@ namespace WebApiContrib.Formatting.CollectionJson.Models
 
         static FakeFriendRepository()
         {
-            friends.Add(new Friend { Id = id++, FullName = "J. Doe", Email = "jdoe@example.org", Blog = new Uri("http://examples.org/blogs/jdoe"), Avatar = new Uri("http://examples.org/images/jode") });
-            friends.Add(new Friend { Id = id++, FullName = "M. Smith", Email = "msmith@example.org", Blog = new Uri("http://examples.org/blogs/msmith"), Avatar = new Uri("http://examples.org/images/msmith") });
-            friends.Add(new Friend { Id = id++, FullName = "R. Williams", Email = "rwilliams@example.org", Blog = new Uri("http://examples.org/blogs/rwilliams"), Avatar = new Uri("http://examples.org/images/rwilliams") });
+            friends.Add(new Friend { Id = id++, FullName = "John Doe", Email = "jdoe@example.org", Blog = new Uri("http://examples.org/blogs/jdoe"), Avatar = new Uri("http://examples.org/images/jode") });
+            friends.Add(new Friend { Id = id++, FullName = "Michael Smith", Email = "msmith@example.org", Blog = new Uri("http://examples.org/blogs/msmith"), Avatar = new Uri("http://examples.org/images/msmith") });
+            friends.Add(new Friend { Id = id++, FullName = "Robby Williams", Email = "rwilliams@example.org", Blog = new Uri("http://examples.org/blogs/rwilliams"), Avatar = new Uri("http://examples.org/images/rwilliams") });
         }
 
         public FakeFriendRepository()

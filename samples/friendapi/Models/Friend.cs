@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
-namespace WebApiContrib.Formatting.CollectionJson.Models
+namespace FriendApi.Models
 {
     public class Friend
     {
-        private string fullName;
-        
+        private string _fullName;
 
         public int Id { get; set; }
         public string ShortName { get; private set;}
         public string FullName {
-            get { return fullName; }
+            get { return _fullName; }
             set
             {
-                fullName = value;
-                var tempName = fullName.ToLower();
+                _fullName = value;
+                var tempName = _fullName.ToLower();
                 ShortName = tempName.Substring(0, 1) + tempName.Substring(tempName.IndexOf(" ")+1);
             }
         }

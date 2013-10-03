@@ -1,4 +1,5 @@
-﻿using WebApiContrib.Formatting.CollectionJson;
+﻿using FriendApi;
+using WebApiContrib.Formatting.CollectionJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             var host = new HttpSelfHostServer(config);
 
             host.OpenAsync().Wait();
-
+            Console.WriteLine("Collection hosted at http://localhost:9200/friends");
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
 

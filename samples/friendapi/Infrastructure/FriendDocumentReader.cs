@@ -1,11 +1,8 @@
-﻿using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Models;
+﻿using FriendApi.Models;
+using WebApiContrib.CollectionJson;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace WebApiContrib.Formatting.CollectionJson.Infrastructure
+namespace FriendApi.Infrastructure
 {
     public class FriendDocumentReader : ICollectionJsonDocumentReader<Friend>
     {
