@@ -10,11 +10,20 @@ This library provides support for ASP.NET Web API using the [Collection+JSON] (h
 * A set of adapter contracts for reading and writing Collection+json documents.
 * Easy to test / IoC friendly
 * A light sample.
-
+ 
 This documentation is a work in progress. You can check the samples directory for a basic CRUD controller and to see how to wire things up.
 
+## Nuget packages
+
+CollectionJson ships with several nuget packages that are factored for client and server scenarios.
+
+* [WebApiContrib.CollectionJson] (https://www.nuget.org/packages/WebApiContrib.CollectionJson) - Object Model for working with CJ documents. Also contains helpers.
+* [WebApiContrib.Formatting.CollectionJson.Client] (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Client) - Contains formatter for creating/consuming CJ documents with `HttpClient` or ASP.NET Web API.
+* [WebApiContrib.Formatting.CollectionJson.Server] (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Server) - Contains controllers for implementing the CJ protocol in ASP.NET Web API.
+* [WebApiContrib.Formatting.CollectionJson] (https://www.nuget.org/packages.WebApiContrib.CollectionJson) - Meta package for backward compatability, pulls in WebApiContrib.Formatting.CollectioJson.Server.
+
 ## IReadDocument and Collection
-This interfaces corresponds to the message format Collection+Json defines for a returning Collection+Json results.
+This interfaces corresponds to the message format Collection+Json defines for returning Collection+Json results.
 
 ```csharp
 public interface IReadDocument
@@ -62,7 +71,7 @@ public class Template
 ```
 
 ## CollectionJsonController
-This controller is a drop in component that one can dervice from to implement Collection+Json. It implements strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
+This controller is a drop in component that one can derive from to implement the Collection+Json CRUD protocol. It constrains to strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
 
 ```csharp
 public class FriendsController : CollectionJsonController<Friend>
