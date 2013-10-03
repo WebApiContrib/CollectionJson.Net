@@ -13,6 +13,54 @@ This library provides support for ASP.NET Web API using the [Collection+JSON] (h
 
 This documentation is a work in progress. You can check the samples directory for a basic CRUD controller and to see how to wire things up.
 
+## IReadDocument and Collection
+This interfaces corresponds to the message format Collection+Json defines for a returning Collection+Json results.
+
+```csharp
+public interface IReadDocument
+{
+    Collection Collection { get; }
+}
+
+public class Collection
+{
+    public Collection()
+    {
+        Links = new List<Link>();
+        Items = new List<Item>();
+        Queries = new List<Query>();
+        Template = new Template();
+    }
+
+    public string Version { get; set; }
+    public Uri Href { get; set; }
+    public IList<Link> Links { get; private set; }
+    public IList<Item> Items { get; private set; }
+    public IList<Query> Queries { get; private set; }
+    public Template Template { get; private set; }
+}
+```
+
+## IWriteDocument and Template
+This interface corresponds to the message format Collection+Json defines for creating / updating items.
+
+```csharp
+public interface IWriteDocument
+{
+    Template Template { get; }
+}
+
+public class Template
+{
+    public Template()
+    {
+        Data = new List<Data>();
+    }
+
+    public IList<Data> Data { get; set; }
+}
+```
+
 ## CollectionJsonController
 This controller is a drop in component that one can dervice from to implement Collection+Json. It implements strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
 
@@ -22,31 +70,42 @@ public class FriendsController : CollectionJsonController<Friend>
     private IFriendRepository repo;
 
     public FriendsController(IFriendRepository repo, ICollectionJsonDocumentWriter<Friend> writer, ICollectionJsonDocumentReader<Friend> reader)
-        :base(builder, transformer)
+        :base(writer, reader)
     {
         this.repo = repo;
     }
 
-    protected override int Create(Friend friend, HttpResponseMessage response)
+    protected override int Create(IWriteDocument writeDocument, HttpResponseMessage response)
     {
+        var friend = Reader.Read(writeDocument);
         return repo.Add(friend);
     }
 
-    protected override IEnumerable<Friend> Read(HttpResponseMessage response)
+    protected override IReadDocument Read(HttpResponseMessage response)
     {
-        return repo.GetAll();
+        var readDoc = Writer.Write(repo.GetAll());
+        return readDoc;
     }
 
-    protected override Friend Read(int id, HttpResponseMessage response)
+    protected override IReadDocument Read(int id, HttpResponseMessage response)
     {
-        return repo.Get(id);
+        return Writer.Write(repo.Get(id));
+    }
+    
+    //custom search method   
+    public HttpResponseMessage Get(string name)
+    {
+        var friends = repo.GetAll().Where(f => f.FullName.IndexOf(name, StringComparison.OrdinalIgnoreCase) > -1);
+        var readDocument = Writer.Write(friends);
+        return readDocument.ToHttpResponseMessage();
     }
 
-    protected override Friend Update(int id, Friend friend, HttpResponseMessage response)
+    protected override IReadDocument Update(int id, IWriteDocument writeDocument, HttpResponseMessage response)
     {
+        var friend = Reader.Read(writeDocument);
         friend.Id = id;
         repo.Update(friend);
-        return friend;
+        return Writer.Write(friend);
     }
 
     protected override void Delete(int id, HttpResponseMessage response)
@@ -54,7 +113,7 @@ public class FriendsController : CollectionJsonController<Friend>
         repo.Remove(id);
     }
 }
-```
+``` 
 
 An implementer overrides methods from the base. The controller abstracts away the CJ format, which is handled via a set of adapters.
 
@@ -85,26 +144,34 @@ The writer is responsible for taking the model and writing it out as Collection+
 ```csharp
 public class FriendDocumentWriter : ICollectionJsonDocumentWriter<Friend>
 {
-    public ReadDocument Write(IEnumerable<Friend> friends)
+    private readonly Uri _requestUri;
+
+    public FriendDocumentWriter(HttpRequestMessage request)
+    {
+        _requestUri = request.RequestUri;
+    }
+
+    public IReadDocument Write(IEnumerable<Friend> friends)
     {
         var document = new ReadDocument();
-        var collection = new Collection { Version = "1.0", Href = new Uri("http://example.org/friends/") };
+        var collection = new Collection { Version = "1.0", Href = new Uri(_requestUri, "/friends/") };
         document.Collection = collection;
 
-        collection.Links.Add(new Link { Rel = "Feed", Href = new Uri("http://example.org/friends/rss") });
+        collection.Links.Add(new Link { Rel = "Feed", Href = new Uri(_requestUri, "/friends/rss") });
 
         foreach (var friend in friends)
         {
-            var item = new Item { Href = new Uri("http://example.org/friends/" + friend.ShortName) };
+            var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
             item.Data.Add(new Data { Name = "full-name", Value = friend.FullName, Prompt = "Full Name" });
             item.Data.Add(new Data { Name = "email", Value = friend.Email, Prompt = "Email" });
+            item.Data.Add(new Data{ Name = "short-name", Value = friend.ShortName, Prompt = "Short Name"});
             item.Links.Add(new Link { Rel = "blog", Href = friend.Blog, Prompt = "Blog" });
             item.Links.Add(new Link { Rel = "avatar", Href = friend.Avatar, Prompt = "Avatar", Render = "Image" });
             collection.Items.Add(item);
         }
 
-        var query = new Query { Rel = "search", Href = new Uri("http://example.org/friends/search"), Prompt = "Search" };
-        query.Data.Add(new Data { Name = "name" });
+        var query = new Query { Rel = "search", Href = new Uri(_requestUri, "/friends"), Prompt = "Search" };
+        query.Data.Add(new Data { Name = "name", Prompt="Value to match against the Full Name" });
         collection.Queries.Add(query);
 
         var data = collection.Template.Data;
