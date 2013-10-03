@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Client;
 
 namespace WebApiContrib.Formatting.CollectionJson.Server
 {
