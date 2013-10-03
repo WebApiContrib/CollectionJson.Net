@@ -2,6 +2,6 @@
 {
     public interface IReadDocument
     {
-        Collection Collection { get; set; }
+        Collection Collection { get; }
     }
 }

@@ -37,7 +37,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
             base.Initialize(controllerContext);
         }
 
-
         private string ControllerName
         {
             get { return this.ControllerContext.ControllerDescriptor.ControllerName; }
