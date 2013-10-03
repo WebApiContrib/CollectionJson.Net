@@ -1,18 +1,11 @@
 ﻿using Autofac;
-using Autofac.Builder;
+using FriendApi.Infrastructure;
+using FriendApi.Models;
 using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Controllers;
-using WebApiContrib.Formatting.CollectionJson.Infrastructure;
-using WebApiContrib.Formatting.CollectionJson.Models;
-using WebApiContrib.Formatting.CollectionJson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Http;
 using WebApiContrib.IoC.Autofac;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace FriendApi
 {
     public static class ServiceConfiguration
     {

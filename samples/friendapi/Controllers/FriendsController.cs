@@ -1,6 +1,6 @@
-﻿using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Infrastructure;
-using WebApiContrib.Formatting.CollectionJson.Models;
+﻿using FriendApi.Models;
+using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net;
 using WebApiContrib.Formatting.CollectionJson.Server;
 
-namespace WebApiContrib.Formatting.CollectionJson.Controllers
+namespace FriendApi.Controllers
 {
     public class FriendsController : CollectionJsonController<Friend>
     {
@@ -23,26 +23,36 @@ namespace WebApiContrib.Formatting.CollectionJson.Controllers
             this.repo = repo;
         }
 
-        protected override int Create(Friend friend, HttpResponseMessage response)
+        protected override int Create(IWriteDocument writeDocument, HttpResponseMessage response)
         {
+            var friend = Reader.Read(writeDocument);
             return repo.Add(friend);
         }
 
-        protected override IEnumerable<Friend> Read(HttpResponseMessage response)
+        protected override IReadDocument Read(HttpResponseMessage response)
         {
-            return repo.GetAll();
+            var readDoc = Writer.Write(repo.GetAll());
+            return readDoc;
         }
 
-        protected override Friend Read(int id, HttpResponseMessage response)
+        protected override IReadDocument Read(int id, HttpResponseMessage response)
         {
-            return repo.Get(id);
+            return Writer.Write(repo.Get(id));
+        }
+        
+        public HttpResponseMessage Get(string name)
+        {
+            var friends = repo.GetAll().Where(f => f.FullName.IndexOf(name, StringComparison.OrdinalIgnoreCase) > -1);
+            var readDocument = Writer.Write(friends);
+            return readDocument.ToHttpResponseMessage();
         }
 
-        protected override Friend Update(int id, Friend friend, HttpResponseMessage response)
+        protected override IReadDocument Update(int id, IWriteDocument writeDocument, HttpResponseMessage response)
         {
+            var friend = Reader.Read(writeDocument);
             friend.Id = id;
             repo.Update(friend);
-            return friend;
+            return Writer.Write(friend);
         }
 
         protected override void Delete(int id, HttpResponseMessage response)

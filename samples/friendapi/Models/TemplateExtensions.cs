@@ -1,11 +1,7 @@
 ﻿using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace FriendApi.Models
 {
     public static class TemplateExtensions
     {

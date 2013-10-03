@@ -8,6 +8,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson.Server;
 using WebApiContrib.Testing;
 using Xunit;
@@ -22,7 +23,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         private Mock<ICollectionJsonDocumentReader<string>> reader;
         private Mock<ICollectionJsonDocumentWriter<string>> writer;
         private TestControllerWithStringId controller;
-        private CollectionJsonFormatter formatter = new CollectionJsonFormatter();
         private ReadDocument testReadDocument;
         private WriteDocument testWriteDocument;
 
@@ -124,28 +124,29 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         public bool UpdateCalled;
         public bool DeleteCalled;
 
-        protected override string Create(string data, System.Net.Http.HttpResponseMessage response)
+        protected override string Create(IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
         {
             CreateCalled = true;
             return "1";
         }
 
-        protected override string Read(string id, System.Net.Http.HttpResponseMessage response)
+        protected override IReadDocument Read(string id, System.Net.Http.HttpResponseMessage response)
         {
             ReadSingleCalled = true;
-            return TestValue;
+            return Writer.Write(TestValue);
         }
 
-        protected override IEnumerable<string> Read(System.Net.Http.HttpResponseMessage response)
+        protected override IReadDocument Read(System.Net.Http.HttpResponseMessage response)
         {
             ReadAllCalled = true;
-            return new[] { TestValue };
+            return Writer.Write(TestValue);
         }
 
-        protected override string Update(string id, string data, System.Net.Http.HttpResponseMessage response)
+        protected override IReadDocument Update(string id, IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
         {
             UpdateCalled = true;
-            return data;
+            var value = Reader.Read(writeDocument);
+            return Writer.Write(value);
         }
 
         protected override void Delete(string id, System.Net.Http.HttpResponseMessage response)

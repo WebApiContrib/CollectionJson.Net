@@ -7,6 +7,6 @@ namespace WebApiContrib.CollectionJson
 {
     public interface ICollectionJsonDocumentWriter<TItem>
     {
-        ReadDocument Write(IEnumerable<TItem> data);
+        IReadDocument Write(IEnumerable<TItem> data);
     }
 }
