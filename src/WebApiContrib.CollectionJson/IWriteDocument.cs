@@ -2,6 +2,6 @@
 {
     public interface IWriteDocument
     {
-        Template Template { get; set; }
+        Template Template { get; }
     }
 }
