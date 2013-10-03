@@ -1,4 +1,5 @@
-﻿using WebApiContrib.Formatting.CollectionJson;
+﻿using FriendApi;
+using WebApiContrib.Formatting.CollectionJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
-﻿using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Infrastructure;
-using WebApiContrib.Formatting.CollectionJson.Models;
+﻿using FriendApi.Models;
+using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net;
 using WebApiContrib.Formatting.CollectionJson.Server;
 
-namespace WebApiContrib.Formatting.CollectionJson.Controllers
+namespace FriendApi.Controllers
 {
     public class FriendsController : CollectionJsonController<Friend>
     {
@@ -42,11 +42,9 @@ namespace WebApiContrib.Formatting.CollectionJson.Controllers
         
         public HttpResponseMessage Get(string name)
         {
-            var friends = repo.GetAll().Where(f => f.ShortName.Equals(name));
+            var friends = repo.GetAll().Where(f => f.FullName.IndexOf(name, StringComparison.OrdinalIgnoreCase) > -1);
             var readDocument = Writer.Write(friends);
-            var response = new HttpResponseMessage();
-            response.Content = readDocument.ToObjectContent();
-            return response;
+            return readDocument.ToHttpResponseMessage();
         }
 
         protected override IReadDocument Update(int id, IWriteDocument writeDocument, HttpResponseMessage response)
