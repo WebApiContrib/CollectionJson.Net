@@ -1,9 +1,9 @@
 ﻿using Autofac;
+using Autofac.Integration.WebApi;
 using FriendApi.Infrastructure;
 using FriendApi.Models;
 using WebApiContrib.CollectionJson;
 using System.Web.Http;
-using WebApiContrib.IoC.Autofac;
 
 namespace FriendApi
 {
@@ -20,9 +20,10 @@ namespace FriendApi
             builder.RegisterType<FriendDocumentWriter>().As<ICollectionJsonDocumentWriter<Friend>>();
             builder.RegisterType<FriendDocumentReader>().As<ICollectionJsonDocumentReader<Friend>>();
             builder.RegisterApiControllers(typeof(ServiceConfiguration).Assembly);
+            builder.RegisterHttpRequestMessage(config);
 
             var container = builder.Build();
-            var resolver = new WebApiContrib.IoC.Autofac.AutofacResolver(container);
+            var resolver = new AutofacWebApiDependencyResolver(container);
             
             config.DependencyResolver = resolver;
         }
