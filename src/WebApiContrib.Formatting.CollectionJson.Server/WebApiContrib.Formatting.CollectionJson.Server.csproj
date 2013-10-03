@@ -63,6 +63,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="CollectionJsonController.cs" />
+    <Compile Include="Compat\CollectionJsonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
