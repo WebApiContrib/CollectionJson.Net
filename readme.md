@@ -23,7 +23,7 @@ CollectionJson ships with several nuget packages that are factored for client an
 * [WebApiContrib.Formatting.CollectionJson] (https://www.nuget.org/packages.WebApiContrib.CollectionJson) - Meta package for backward compatability, pulls in WebApiContrib.Formatting.CollectioJson.Server.
 
 ## IReadDocument and Collection
-This interfaces corresponds to the message format Collection+Json defines for a returning Collection+Json results.
+This interfaces corresponds to the message format Collection+Json defines for returning Collection+Json results.
 
 ```csharp
 public interface IReadDocument
@@ -71,7 +71,7 @@ public class Template
 ```
 
 ## CollectionJsonController
-This controller is a drop in component that one can dervice from to implement Collection+Json. It implements strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
+This controller is a drop in component that one can derive from to implement the Collection+Json CRUD protocol. It constrains to strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
 
 ```csharp
 public class FriendsController : CollectionJsonController<Friend>
