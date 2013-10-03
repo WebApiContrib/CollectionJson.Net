@@ -17,9 +17,10 @@ This documentation is a work in progress. You can check the samples directory fo
 
 CollectionJson ships with several nuget packages that are factored for client and server scenarios.
 
-* WebApiContrib.CollectionJson (https://www.nuget.org/packages/WebApiContrib.CollectionJson) - Object Model for working with CJ documents. Also contains helpers.
-* WebApiContrib.Formatting.CollectionJson.Client (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Client) - Contains formatter for creating/consuming CJ documents with `HttpClient` or ASP.NET Web API.
-* WebApiContrib.Formatting.CollectionJson.Server (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Server) - Contains controllers for implementing the CJ protocol in ASP.NET Web API.
+* [WebApiContrib.CollectionJson] (https://www.nuget.org/packages/WebApiContrib.CollectionJson) - Object Model for working with CJ documents. Also contains helpers.
+* [WebApiContrib.Formatting.CollectionJson.Client] (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Client) - Contains formatter for creating/consuming CJ documents with `HttpClient` or ASP.NET Web API.
+* [WebApiContrib.Formatting.CollectionJson.Server] (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Server) - Contains controllers for implementing the CJ protocol in ASP.NET Web API.
+* [WebApiContrib.Formatting.CollectionJson] (https://www.nuget.org/packages.WebApiContrib.CollectionJson) - Meta package for backward compatability, pulls in WebApiContrib.Formatting.CollectioJson.Server.
 
 ## IReadDocument and Collection
 This interfaces corresponds to the message format Collection+Json defines for a returning Collection+Json results.
