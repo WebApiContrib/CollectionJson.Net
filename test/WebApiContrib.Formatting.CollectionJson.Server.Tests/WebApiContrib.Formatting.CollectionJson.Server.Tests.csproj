@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="CollectionJsonControllerTests.cs" />
     <Compile Include="CollectionJsonControllerWithTIdTests.cs" />
+    <Compile Include="Compat\CollectionJsonControllerTests.cs" />
+    <Compile Include="Compat\CollectionJsonControllerWithTldTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
