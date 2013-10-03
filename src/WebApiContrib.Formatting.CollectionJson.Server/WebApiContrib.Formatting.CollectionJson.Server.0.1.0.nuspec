@@ -3,7 +3,7 @@
     <metadata>
         <id>WebApiContrib.Formatting.CollectionJson.Server</id>
         <version>0.1.0</version>
-        <title>Collection+Json Web Api server extensions</title>
+        <title>Collection+Json Web Api Server library</title>
         <authors>Administrator</authors>
         <owners>Glenn Block</owners>
         <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
