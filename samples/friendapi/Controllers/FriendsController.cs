@@ -31,19 +31,30 @@ namespace WebApiContrib.Formatting.CollectionJson.Controllers
 
         protected override IReadDocument Read(HttpResponseMessage response)
         {
-            return repo.GetAll();
+            var readDoc = Writer.Write(repo.GetAll());
+            return readDoc;
         }
 
-        protected override Friend Read(int id, HttpResponseMessage response)
+        protected override IReadDocument Read(int id, HttpResponseMessage response)
         {
-            return repo.Get(id);
+            return Writer.Write(repo.Get(id));
+        }
+        
+        public HttpResponseMessage Get(string name)
+        {
+            var friends = repo.GetAll().Where(f => f.ShortName.Equals(name));
+            var readDocument = Writer.Write(friends);
+            var response = new HttpResponseMessage();
+            response.Content = readDocument.ToObjectContent();
+            return response;
         }
 
-        protected override Friend Update(int id, Friend friend, HttpResponseMessage response)
+        protected override IReadDocument Update(int id, IWriteDocument writeDocument, HttpResponseMessage response)
         {
+            var friend = Reader.Read(writeDocument);
             friend.Id = id;
             repo.Update(friend);
-            return friend;
+            return Writer.Write(friend);
         }
 
         protected override void Delete(int id, HttpResponseMessage response)

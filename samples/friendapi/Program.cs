@@ -18,7 +18,7 @@ namespace WebApiContrib.Formatting.CollectionJson
             var host = new HttpSelfHostServer(config);
 
             host.OpenAsync().Wait();
-
+            Console.WriteLine("Collection hosted at http://localhost:9200/friends");
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
 

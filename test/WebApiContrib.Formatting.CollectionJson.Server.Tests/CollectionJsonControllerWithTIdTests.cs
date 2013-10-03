@@ -8,6 +8,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using WebApiContrib.CollectionJson;
+using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson.Server;
 using WebApiContrib.Testing;
 using Xunit;
