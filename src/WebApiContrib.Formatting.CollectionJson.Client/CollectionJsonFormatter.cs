@@ -9,7 +9,7 @@ using System.Net.Http.Formatting;
 using System.Text;
 using WebApiContrib.CollectionJson;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace WebApiContrib.Formatting.CollectionJson.Client
 {
     public class CollectionJsonFormatter : JsonMediaTypeFormatter
     {
