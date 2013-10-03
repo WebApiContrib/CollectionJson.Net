@@ -17,8 +17,8 @@ namespace FriendApi.Controllers
     {
         private IFriendRepository repo;
 
-        public FriendsController(IFriendRepository repo, ICollectionJsonDocumentWriter<Friend> builder, ICollectionJsonDocumentReader<Friend> transformer)
-            :base(builder, transformer)
+        public FriendsController(IFriendRepository repo, ICollectionJsonDocumentWriter<Friend> writer, ICollectionJsonDocumentReader<Friend> reader)
+            :base(writer, reader)
         {
             this.repo = repo;
         }
