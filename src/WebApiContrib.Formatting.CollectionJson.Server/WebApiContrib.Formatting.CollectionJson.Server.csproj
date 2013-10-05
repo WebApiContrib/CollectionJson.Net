@@ -70,6 +70,9 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="WebApiContrib.Formatting.CollectionJson.Server.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj">

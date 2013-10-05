@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>WebApiContrib.Formatting.CollectionJson.Client</id>
-        <version>0.1.0</version>
+        <version>0.1.2.0</version>
         <title>Collection+Json Client Library</title>
         <authors>Glenn Block</authors>
         <owners>Glenn Block</owners>
@@ -15,7 +15,7 @@
         <dependencies>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="Microsoft.AspNet.WebApi.Client" version="4.0.30506.0" />
-                <dependency id="WebApiContrib.CollectionJson" version="0.1.0.0" />
+                <dependency id="WebApiContrib.CollectionJson" version="0.1.2.0" />
             </group>
         </dependencies>
     </metadata>

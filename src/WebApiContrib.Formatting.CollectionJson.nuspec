@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>WebApiContrib.Formatting.CollectionJson</id>
-        <version>0.1.0</version>
+        <version>0.1.2.0</version>
         <title>Collection+Json</title>
         <authors>Glenn Block</authors>
         <owners>Glenn Block</owners>
@@ -15,7 +15,7 @@
         <tags>collectionjson webapi</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="WebApiContrib.CollectionJson.Server" version="0.1.0.0" />
+                <dependency id="WebApiContrib.Formatting.CollectionJson.Server" version="0.1.2.0" />
             </group>
         </dependencies>
     </metadata>
