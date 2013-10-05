@@ -62,7 +62,9 @@
     <Compile Include="WriteDocument.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="WebApiContrib.CollectionJson.0.1.0.nuspec" />
+    <None Include="WebApiContrib.CollectionJson.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
