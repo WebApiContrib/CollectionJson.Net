@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -75,7 +78,69 @@ namespace WebApiContrib.Formatting.CollectionJson.Client.Tests
         {
             formatter.SerializerSettings.NullValueHandling.ShouldEqual(NullValueHandling.Ignore);
         }
-	
-    }
 
+        [Fact]
+        public void WhenTypeImplementsIReadDocumentThenWriteToStreamAsyncWritesCollectionJson()
+        {
+            var doc = new TestReadDocument();
+            var stream = new MemoryStream();
+            formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null).Wait();
+            var reader = new StreamReader(stream);
+            stream.Position = 0;
+            var content = reader.ReadToEnd();
+            content.ShouldContain("\"collection\":");
+            content.ShouldContain("\"http://test.com/\"");
+        }
+
+        [Fact]
+        public void WhenTypeImplementsIWriteDocumentThenWriteToStreamAsyncWritesCollectionJson()
+        {
+            var doc = new TestWriteDocument();
+            var stream = new MemoryStream();
+            formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null).Wait();
+            var reader = new StreamReader(stream);
+            stream.Position = 0;
+            var content = reader.ReadToEnd();
+            content.ShouldContain("\"TestValue\"");
+        }
+
+        public class TestReadDocument : IReadDocument
+        {
+            public TestReadDocument()
+            {
+                _collection = new Collection();
+                _collection.Href = new Uri("http://test.com");
+            }
+
+            private Collection _collection;
+
+            Collection IReadDocument.Collection
+            {
+                get
+                {
+                    return _collection;
+                }
+            }
+        }
+
+        public class TestWriteDocument : IWriteDocument
+        {
+            public TestWriteDocument()
+            {
+                _template = new Template();
+                _template.Data.Add(new Data{Name="Value", Value="TestValue"});
+            }
+
+            private Template _template;
+
+            Template IWriteDocument.Template
+            {
+                get
+                {
+                    return _template;
+                }
+            }
+        }
+
+    }
 }
