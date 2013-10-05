@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="WebApiContrib.Formatting.CollectionJson.Client.0.1.0.nuspec">
+    <None Include="WebApiContrib.Formatting.CollectionJson.Client.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

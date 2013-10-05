@@ -70,7 +70,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="WebApiContrib.Formatting.CollectionJson.Server.0.1.0.nuspec">
+    <None Include="WebApiContrib.Formatting.CollectionJson.Server.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
