@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>WebApiContrib.Formatting.CollectionJson.Server</id>
-        <version>0.1.2.0</version>
+        <version>$version$</version>
         <title>Collection+Json Web Api Server library</title>
         <authors>Glenn Block</authors>
         <owners>Glenn Block</owners>

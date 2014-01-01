@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WebApiContrib.Formatting.CollectionJson")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright 2013 Glenn Block")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
