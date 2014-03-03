@@ -47,6 +47,7 @@
     <Compile Include="CollectionJsonDocumentWriterExtensions.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="ExtensibleObject.cs" />
     <Compile Include="ICollectionJsonDocumentReader_Of_T.cs" />
     <Compile Include="ICollectionJsonDocumentWriter_Of_T.cs" />
     <Compile Include="IEnumerable_Of_DataExtensions.cs" />

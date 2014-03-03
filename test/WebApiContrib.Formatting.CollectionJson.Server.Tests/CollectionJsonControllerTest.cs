@@ -18,15 +18,15 @@ using System.Net;
 
 namespace WebApiContrib.Formatting.CollectionJson.Tests
 {
-    public class CollectionJsonControllerWithTIdTests
+    public class CollectionJsonControllerTest
     {
         private Mock<ICollectionJsonDocumentReader<string>> reader;
         private Mock<ICollectionJsonDocumentWriter<string>> writer;
-        private TestControllerWithStringId controller;
+        private TestController controller;
         private ReadDocument testReadDocument;
         private WriteDocument testWriteDocument;
-
-        public CollectionJsonControllerWithTIdTests()
+ 
+        public CollectionJsonControllerTest()
         {
             reader = new Mock<ICollectionJsonDocumentReader<string>>();
             writer = new Mock<ICollectionJsonDocumentWriter<string>>();
@@ -37,8 +37,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
 
             writer.Setup(w => w.Write(It.IsAny<IEnumerable<string>>())).Returns(testReadDocument);
             reader.Setup(r => r.Read(It.IsAny<WriteDocument>())).Returns("Test");
-
-            controller = new TestControllerWithStringId(writer.Object, reader.Object);
+            controller = new TestController(writer.Object, reader.Object);
             controller.ConfigureForTesting(new HttpRequestMessage(HttpMethod.Get, "http://localhost/test/"));
             controller.Configuration.Formatters.Add(new CollectionJsonFormatter());
         }
@@ -54,7 +53,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         [Fact]
         public void WhenGettingSingleShouldReturnDocument()
         {
-            var response = controller.Get("1");
+            var response = controller.Get(1);
             var value = response.Content.ReadAsAsync<ReadDocument>().Result;
             value.Collection.Href.AbsoluteUri.ShouldEqual("http://test.com/");
         }
@@ -87,7 +86,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         public void WhenPutShouldReturnDocument()
         {
             controller.Request.Method = HttpMethod.Put;
-            var response = controller.Put("1", testWriteDocument);
+            var response = controller.Put(1,testWriteDocument);
             var value = response.Content.ReadAsAsync<ReadDocument>().Result;
             value.Collection.Href.AbsoluteUri.ShouldEqual("http://test.com/");
         }
@@ -96,7 +95,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         public void WhenPutShouldCallUpdate()
         {
             controller.Request.Method = HttpMethod.Put;
-            var response = controller.Put("1", testWriteDocument);
+            var response = controller.Put(1, testWriteDocument);
             controller.UpdateCalled.ShouldBeTrue();
         }
 
@@ -104,17 +103,18 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         public void WhenRemoveShouldCallDelete()
         {
             controller.Request.Method = HttpMethod.Delete;
-            var response = controller.Remove("1");
+            var response = controller.Remove(1);
             controller.DeleteCalled.ShouldBeTrue();
         }
     }
-
-    public class TestControllerWithStringId : CollectionJsonController<string, string>
+    
+    //needed for overriding protected methods
+    public class TestController : CollectionJsonController<string>
     {
         public const string TestValue = "Test";
 
-        public TestControllerWithStringId(ICollectionJsonDocumentWriter<string> writer, ICollectionJsonDocumentReader<string> reader)
-            : base(writer, reader)
+        public TestController(ICollectionJsonDocumentWriter<string> writer, ICollectionJsonDocumentReader<string> reader)
+            : base(writer,reader)
         {
         }
 
@@ -124,15 +124,16 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
         public bool UpdateCalled;
         public bool DeleteCalled;
 
-        protected override string Create(IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
+        protected override int Create(IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
         {
             CreateCalled = true;
-            return "1";
+            return 1;
         }
 
-        protected override IReadDocument Read(string id, System.Net.Http.HttpResponseMessage response)
+        protected override IReadDocument Read(int id, System.Net.Http.HttpResponseMessage response)
         {
             ReadSingleCalled = true;
+            
             return Writer.Write(TestValue);
         }
 
@@ -142,14 +143,14 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
             return Writer.Write(TestValue);
         }
 
-        protected override IReadDocument Update(string id, IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
+        protected override IReadDocument Update(int id, IWriteDocument writeDocument, System.Net.Http.HttpResponseMessage response)
         {
             UpdateCalled = true;
             var value = Reader.Read(writeDocument);
             return Writer.Write(value);
         }
 
-        protected override void Delete(string id, System.Net.Http.HttpResponseMessage response)
+        protected override void Delete(int id, System.Net.Http.HttpResponseMessage response)
         {
             DeleteCalled = true;
         }
