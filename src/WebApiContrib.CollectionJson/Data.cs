@@ -5,10 +5,24 @@ using System.Text;
 
 namespace WebApiContrib.CollectionJson
 {
-    public class Data
+    public class Data : ExtensibleObject
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
-        public string Prompt { get; set; }
+        public string Name
+        {
+            get { return GetValue<string>("Name"); }
+            set { SetValue("Name", value); }
+        }
+
+        public string Value
+        {
+            get { return GetValue<string>("Value"); }
+            set { SetValue("Value", value); }
+        }
+
+        public string Prompt
+        {
+            get { return GetValue<string>("Prompt"); }
+            set { SetValue("Prompt", value); }
+        }
     }
 }

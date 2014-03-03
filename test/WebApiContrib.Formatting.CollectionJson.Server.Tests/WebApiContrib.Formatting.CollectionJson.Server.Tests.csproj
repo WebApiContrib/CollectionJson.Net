@@ -74,8 +74,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionJsonControllerTests.cs" />
-    <Compile Include="CollectionJsonControllerWithTIdTests.cs" />
+    <Compile Include="CollectionJsonControllerTest.cs" />
+    <Compile Include="CollectionJsonControllerWithTIdTest.cs" />
     <Compile Include="Compat\CollectionJsonControllerTests.cs" />
     <Compile Include="Compat\CollectionJsonControllerWithTldTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
