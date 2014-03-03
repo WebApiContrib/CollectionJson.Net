@@ -3,13 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using WebApiContrib.CollectionJson;
 using WebApiContrib.Formatting.CollectionJson.Client;
 
 namespace WebApiContrib.Formatting.CollectionJson.Server
 {
+    public abstract class CollectionJsonController : ApiController
+    {
+        private static bool _formatterAdded;
+        private static readonly object _lock = new object();
+
+        protected override void Initialize(HttpControllerContext controllerContext)
+        {
+            if (!_formatterAdded)
+            {
+                lock (_lock)
+                {
+                    controllerContext.Configuration.Formatters.Insert(0, new CollectionJsonFormatter());
+                    _formatterAdded = true;
+                }
+            }
+            base.Initialize(controllerContext);
+        }
+    }
+
     public abstract class CollectionJsonController<TData> : CollectionJsonController<TData, int>
     {
         protected CollectionJsonController(ICollectionJsonDocumentWriter<TData> writer, ICollectionJsonDocumentReader<TData> reader, string routeName = "DefaultApi") :
@@ -18,7 +39,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
         }
     }
 
-    public abstract class CollectionJsonController<TData, TId> : ApiController
+    public abstract class CollectionJsonController<TData, TId> : CollectionJsonController
     {
         private string routeName;
         protected ICollectionJsonDocumentWriter<TData> Writer { get; set; }
@@ -29,12 +50,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
             this.routeName = routeName;
             this.Writer = writer;
             this.Reader = reader;
-        }
-
-        protected override void Initialize(System.Web.Http.Controllers.HttpControllerContext controllerContext)
-        {
-            controllerContext.Configuration.Formatters.Insert(0,new CollectionJsonFormatter());
-            base.Initialize(controllerContext);
         }
 
         private string ControllerName
