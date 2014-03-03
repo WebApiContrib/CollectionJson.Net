@@ -12,6 +12,7 @@ namespace WebApiContrib.CollectionJson
             Data = new List<Data>();
         }
 
+        public string Rt { get; set; }
         public string Rel { get; set; }
         public Uri Href { get; set; }
         public string Prompt { get; set; }

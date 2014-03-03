@@ -14,6 +14,8 @@ namespace WebApiContrib.CollectionJson
         }
 
         public Uri Href { get; set; }
+        public string Rel { get; set; }
+        public string Rt { get; set; }
         public IList<Data> Data { get; private set; }
         public IList<Link> Links { get; private set; }
         
