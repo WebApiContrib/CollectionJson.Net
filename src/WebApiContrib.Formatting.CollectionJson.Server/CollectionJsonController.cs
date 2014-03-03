@@ -17,6 +17,11 @@ namespace WebApiContrib.Formatting.CollectionJson.Server
         private static bool _formatterAdded;
         private static readonly object _lock = new object();
 
+        internal CollectionJsonController()
+        {
+            
+        }
+
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             if (!_formatterAdded)
