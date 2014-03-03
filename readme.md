@@ -1,10 +1,11 @@
-# CollectionJson
+# CollectionJson.NET
 
 This library provides support for ASP.NET Web API using the [Collection+JSON] (http://amundsen.com/media-types/collection/) hypermedia mediatype authored by [Mike Amundsen] (http://twitter.com/mamund).
 
 ## Features
 
 * A set of models for fully representing a Collection+Json document.
+* Support for extensions
 * CollectionJsonFormatter which handles Collection+Json representations.
 * CollectionJsonController which is a drop-in API controller that is designed to make it easy to support Collection+Json. It wires up the formatter for you / removes a lot of cruft.
 * A set of adapter contracts for reading and writing Collection+json documents.
@@ -22,56 +23,139 @@ CollectionJson ships with several nuget packages that are factored for client an
 * [WebApiContrib.Formatting.CollectionJson.Server] (https://www.nuget.org/packages/WebApiContrib.Formatting.CollectionJson.Server) - Contains controllers for implementing the CJ protocol in ASP.NET Web API.
 * [WebApiContrib.Formatting.CollectionJson] (https://www.nuget.org/packages.WebApiContrib.CollectionJson) - Meta package for backward compatability, pulls in WebApiContrib.Formatting.CollectioJson.Server.
 
-## IReadDocument and Collection
-This interfaces corresponds to the message format Collection+Json defines for returning Collection+Json results.
+## Returning a read document from a server
+To create a new read document instantiate a `Collection` instance. The `CollectionJsonFormatter` will write this out to the CollectionJson format.
 
 ```csharp
-public interface IReadDocument
+var document = new ReadDocumnent();
+var collection = new Collection { Version = "1.0", Href = new Uri(_requestUri, "/friends/") };
+document.Collection = collection;
+
+collection.Links.Add(new Link { Rel = "Feed", Href = new Uri(_requestUri, "/friends/rss") });
+
+foreach (var friend in friends)
 {
-    Collection Collection { get; }
+    var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
+    item.Data.Add(new Data { Name = "full-name", Value = friend.FullName, Prompt = "Full Name" });
+    item.Data.Add(new Data { Name = "email", Value = friend.Email, Prompt = "Email" });
+    item.Data.Add(new Data{ Name = "short-name", Value = friend.ShortName, Prompt = "Short Name"});
+    item.Links.Add(new Link { Rel = "blog", Href = friend.Blog, Prompt = "Blog" });
+    item.Links.Add(new Link { Rel = "avatar", Href = friend.Avatar, Prompt = "Avatar", Render = "Image" });
+    collection.Items.Add(item);
 }
 
-public class Collection
-{
-    public Collection()
-    {
-        Links = new List<Link>();
-        Items = new List<Item>();
-        Queries = new List<Query>();
-        Template = new Template();
-    }
+var query = new Query { Rel = "search", Href = new Uri(_requestUri, "/friends"), Prompt = "Search" };
+query.Data.Add(new Data { Name = "name", Prompt="Value to match against the Full Name" });
+collection.Queries.Add(query);
 
-    public string Version { get; set; }
-    public Uri Href { get; set; }
-    public IList<Link> Links { get; private set; }
-    public IList<Item> Items { get; private set; }
-    public IList<Query> Queries { get; private set; }
-    public Template Template { get; private set; }
-}
+var data = collection.Template.Data;
+data.Add(new Data { Name = "name", Prompt = "Full Name" });
+data.Add(new Data { Name = "email", Prompt = "Email" });
+data.Add(new Data { Name = "blog", Prompt = "Blog" });
+data.Add(new Data { Name = "avatar", Prompt = "Avatar" });
 ```
 
-## IWriteDocument and Template
-This interface corresponds to the message format Collection+Json defines for creating / updating items.
+## Using extensions
+The `Collection`, `Data`, `Item`, `Link` and `Query` classes are all extensible to allow for using CollectionJson extensions. There are two different methods for working with extensions. 
 
+### Using dynamic
+Extensions can be set by casting to dynamic and setting arbitrary extension properties. Below is an example setting the Model extension.
 ```csharp
-public interface IWriteDocument
-{
-    Template Template { get; }
-}
-
-public class Template
-{
-    public Template()
-    {
-        Data = new List<Data>();
-    }
-
-    public IList<Data> Data { get; set; }
-}
+var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
+dynamic dItem = item;
+item.Model = "friend";
 ```
 
-## CollectionJsonController
+### Using SetValue
+Extensions can be set by calling the SetValue method.
+```csharp
+var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
+item.SetValue("Model", "friend");
+```
+
+### Using GetValue
+Extensions can be retrieved by calling the GetValue method
+```csharp
+var model = item.GetValue<string>("Model");
+```
+
+## API
+### IReadDocument / ReadDocument
+A CollectionJson server returns an object implementing IReadDocument. The `CollectionJsonFormatter` casts the model to  this interface to write out the payload. The concrete ReadDocument class implements this interface.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Collection  | Sets the Collection (`Collection`) 
+
+### WriteDocument / IWriteDocument
+A CollectionJson server receives an object implementing IWriteDocument. The `CollectionJsonFormatter' casts the model to this interface to read in the template. The concrete WriteDocument class implements this interface.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Template    | Contains the write template sent from the client
+
+### Collection
+The collection contains all the details for the CollectionJson document
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Version     | Sets the CollectionJson version 
+Links       | Contains the top level links (`Link`) for the collection
+Items       | Contains the collection of items (`Item`)
+Queries     | Contains the collection of queries (`Query`)
+Template    | Contains the write template (`Template`) to be retuned to the client
+
+### Item
+CollectionJson documents contain one or more items which are represented with the `Item` class.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Rel         | The link relation
+Href        | Url for dreferencing the item
+Rt          | Describes the item
+Data        | Contains the data elements for the item.
+Links       | Contains the links for the item
+
+### Link
+The Link object is used for embedding links with the document
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Rel         | The link relation
+Href        | Url for dreferencing the link
+Prompt      | Contains a human readable description for the link
+Render      | How the link should be rendered, should be "image" or "link"
+
+### Query
+Queries are sent to the client which it can use to search against data.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Rel         | The link relation
+Href        | Url for dreferencing the link
+Prompt      | Contains a human readable description for the link
+Rt          | Describes the return value of the query
+Data        | Contains the data elements which the client will use to perform the query
+
+### Template
+Templates are sent to the client to instruct it as to which data elements it should send in order to create or update the collection.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Data        | Contains the data elements for the template
+
+
+### CollectionJsonController_Of_T
 This controller is a drop in component that one can derive from to implement the Collection+Json CRUD protocol. It constrains to strictly returning and accepting the correct message formats based on the spec. It also handles concerns like status codes, auto-generating the location header etc.
+
+Member      | Description
+----------- | -----------------------------------------------------------------------------------------------
+Create      | Handles creation of a new item.
+Read        | Handles reading a single or multiple items
+Update      | Handles updating an existing itemm.
+Delete      | Removes an existing item.
+
+Below is a sample controller implementation
 
 ```csharp
 public class FriendsController : CollectionJsonController<Friend>
@@ -126,7 +210,7 @@ public class FriendsController : CollectionJsonController<Friend>
 
 An implementer overrides methods from the base. The controller abstracts away the CJ format, which is handled via a set of adapters.
 
-# ICollectionJsonDocumentReader
+### ICollectionJsonDocumentReader
 
 The reader is responsible for taking a Collection+JSON write template and convering it into "some" model. The model can be anything from a primitive like a string to a complex object.
 
@@ -146,7 +230,7 @@ public class FriendDocumentReader : ICollectionJsonDocumentReader<Friend>
 }
 ```
 
-# ICollectionJsonDocumentWriter
+### ICollectionJsonDocumentWriter
 
 The writer is responsible for taking the model and writing it out as Collection+Json Document.
 
@@ -162,32 +246,8 @@ public class FriendDocumentWriter : ICollectionJsonDocumentWriter<Friend>
 
     public IReadDocument Write(IEnumerable<Friend> friends)
     {
-        var document = new ReadDocument();
-        var collection = new Collection { Version = "1.0", Href = new Uri(_requestUri, "/friends/") };
-        document.Collection = collection;
-
-        collection.Links.Add(new Link { Rel = "Feed", Href = new Uri(_requestUri, "/friends/rss") });
-
-        foreach (var friend in friends)
-        {
-            var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
-            item.Data.Add(new Data { Name = "full-name", Value = friend.FullName, Prompt = "Full Name" });
-            item.Data.Add(new Data { Name = "email", Value = friend.Email, Prompt = "Email" });
-            item.Data.Add(new Data{ Name = "short-name", Value = friend.ShortName, Prompt = "Short Name"});
-            item.Links.Add(new Link { Rel = "blog", Href = friend.Blog, Prompt = "Blog" });
-            item.Links.Add(new Link { Rel = "avatar", Href = friend.Avatar, Prompt = "Avatar", Render = "Image" });
-            collection.Items.Add(item);
-        }
-
-        var query = new Query { Rel = "search", Href = new Uri(_requestUri, "/friends"), Prompt = "Search" };
-        query.Data.Add(new Data { Name = "name", Prompt="Value to match against the Full Name" });
-        collection.Queries.Add(query);
-
-        var data = collection.Template.Data;
-        data.Add(new Data { Name = "name", Prompt = "Full Name" });
-        data.Add(new Data { Name = "email", Prompt = "Email" });
-        data.Add(new Data { Name = "blog", Prompt = "Blog" });
-        data.Add(new Data { Name = "avatar", Prompt = "Avatar" });
+        //create the document from the friends collection
+        var document = ...
         return document;
     }
 }
