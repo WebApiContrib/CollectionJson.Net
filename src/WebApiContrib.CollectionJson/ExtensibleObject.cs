@@ -56,5 +56,10 @@ namespace WebApiContrib.CollectionJson
         {
             Members[key] = value;
         }
+
+        public dynamic Extensions()
+        {
+            return this;
+        }
     }
 }
