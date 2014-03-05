@@ -56,15 +56,25 @@ data.Add(new Data { Name = "avatar", Prompt = "Avatar" });
 ```
 
 ## Using extensions
-The `Collection`, `Data`, `Item`, `Link` and `Query` classes are all extensible to allow for using CollectionJson extensions. There are two different methods for working with extensions. 
+The `Collection`, `Data`, `Item`, `Link` and `Query` classes are all extensible to allow for using CollectionJson extensions. There are three different methods for working with extensions. 
 
-### Using dynamic
-Extensions can be set by casting to dynamic and setting arbitrary extension properties. Below is an example setting the Model extension.
+### Using `Extensions`
+Extensions can be set by using the `Extensions` method which returns a dynamic object. Below is an example setting the Model extension*.
+```csharp
+var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
+item.Extensions().Model = "friend";
+```
+
+*Note: `Extensions` is a method rather than a property to avoid from being serialized, and to make it compatible with multiple serializers.
+
+### Casting to Dynamic
+Each of the aforementioned classes can be cast directly to `dynamic`.
 ```csharp
 var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
 dynamic dItem = item;
-item.Model = "friend";
+dItem.Model="friend";
 ```
+
 
 ### Using SetValue
 Extensions can be set by calling the SetValue method.

@@ -26,10 +26,7 @@ namespace FriendApi.Infrastructure
             foreach (var friend in friends)
             {
                 var item = new Item { Href = new Uri(_requestUri, "/friends/" + friend.Id) };
-                dynamic dItem = item;
-
-                //use the model extension
-                dItem.Model = "friend";
+                item.Extensions().Model = "friend";
 
                 item.Data.Add(new Data { Name = "full-name", Value = friend.FullName, Prompt = "Full Name" });
                 item.Data.Add(new Data { Name = "email", Value = friend.Email, Prompt = "Email" });
