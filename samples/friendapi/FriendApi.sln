@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendApi", "FriendApi.csproj", "{EAB2A98D-2059-45B2-8DFF-42B8326D5531}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6B005A23-F5E8-4D0F-98C9-3D260C2C80E3}"
@@ -15,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Client", "..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj", "{E86C985A-ECB3-4065-98C3-CBB2039C7170}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Server", "..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj", "{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CJTest", "..\..\..\CJTest\CJTest.csproj", "{7F98FD89-D157-4623-BB7A-D240BDCD99A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,10 @@ Global
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
