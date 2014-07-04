@@ -11,7 +11,7 @@ namespace WebApiContrib.CollectionJson
     {
         public ExtensibleObject()
         {
-            Members = new Dictionary<string, object>();
+            Members = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
         }
         
         protected IDictionary<string, object> Members { get; private set; } 

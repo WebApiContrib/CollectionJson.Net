@@ -10,7 +10,6 @@ using System.Web.Http.Routing;
 using WebApiContrib.CollectionJson;
 using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson.Server.Compat;
-using WebApiContrib.Testing;
 using Xunit;
 using Should;
 using Moq;
