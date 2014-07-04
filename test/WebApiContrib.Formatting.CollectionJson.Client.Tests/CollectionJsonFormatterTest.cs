@@ -89,7 +89,7 @@ namespace WebApiContrib.Formatting.CollectionJson.Client.Tests
             stream.Position = 0;
             var content = reader.ReadToEnd();
             content.ShouldContain("\"collection\":");
-            content.ShouldContain("\"http://test.com/\"");
+            content.ShouldContain("\"http://test.com\"");
         }
 
         [Fact]

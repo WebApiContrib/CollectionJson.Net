@@ -10,7 +10,6 @@ using System.Web.Http.Routing;
 using WebApiContrib.CollectionJson;
 using WebApiContrib.Formatting.CollectionJson.Client;
 using WebApiContrib.Formatting.CollectionJson.Server;
-using WebApiContrib.Testing;
 using Xunit;
 using Should;
 using Moq;
@@ -40,7 +39,6 @@ namespace WebApiContrib.Formatting.CollectionJson.Tests
 
             controller = new TestControllerWithStringId(writer.Object, reader.Object);
             controller.ConfigureForTesting(new HttpRequestMessage(HttpMethod.Get, "http://localhost/test/"));
-            controller.Configuration.Formatters.Add(new CollectionJsonFormatter());
         }
 
         [Fact]

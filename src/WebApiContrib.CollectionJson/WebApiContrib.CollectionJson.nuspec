@@ -15,6 +15,6 @@
         <tags>collectionjson</tags>
     </metadata>
     <files>
-        <file src="bin\Release\WebApiContrib.CollectionJson.dll" target="lib\4.0\WebApiContrib.CollectionJson.dll" />
+        <file src="bin\Release\WebApiContrib.CollectionJson.dll" target="lib\portable-net40+sl5+win8+wp8+monotouch+monoandroid" />
     </files>
 </package>
