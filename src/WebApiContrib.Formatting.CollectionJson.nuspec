@@ -11,11 +11,11 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Meta package which pulls in the new Collection+Json packages</description>
         <summary>Contains an API for working with CJ documents as well as hosting a CJ server</summary>
-        <copyright>2013 Glenn Block</copyright>
+        <copyright>2014 Glenn Block</copyright>
         <tags>collectionjson webapi</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="WebApiContrib.Formatting.CollectionJson.Server" version="0.1.2.0" />
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="WebApiContrib.Formatting.CollectionJson.Server" version="0.6.0" />
             </group>
         </dependencies>
     </metadata>

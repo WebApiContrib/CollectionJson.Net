@@ -11,15 +11,14 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Includes a CollectionJsonFormatter which can be used with HttpClient or with ASP.NET Web Api</description>
         <summary>Library for consuming and producing Collection+Json content</summary>
+        <copyright>Glenn Block 2014</copyright>
         <tags>collectionjson httpclient</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="Microsoft.AspNet.WebApi.Client" version="4.0.30506.0" />
-                <dependency id="WebApiContrib.CollectionJson" version="0.1.2.0" />
-            </group>
+            <dependency id="Microsoft.AspNet.WebApi.Client" version="5.0"/>
+            <dependency id="WebApiContrib.CollectionJson" />
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\WebApiContrib.Formatting.CollectionJson.Client.dll" target="lib\net40\WebApiContrib.Formatting.CollectionJson.Client.dll" />
+        <file src="bin\Release\WebApiContrib.Formatting.CollectionJson.Client.dll" target="lib\portable-net45+win8+wp8+monotouch+monoandroid" />
     </files>
 </package>

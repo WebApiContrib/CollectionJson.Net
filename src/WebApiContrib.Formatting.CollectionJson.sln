@@ -1,13 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2943A601-13D2-4D9D-916D-C35B99899216}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.CollectionJson", "WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj", "{B9F7BC64-7924-4928-910D-2E9E03DC682F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Client", "WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj", "{E86C985A-ECB3-4065-98C3-CBB2039C7170}"
