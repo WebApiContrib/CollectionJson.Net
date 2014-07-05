@@ -35,9 +35,9 @@ call %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild test\WebApiContrib.Form
 
 REM Test Execution
 
-%GallioEcho% test\WebApiContrib.CollectionJson.Tests\bin\%config%\WebApiContrib.CollectionJson.Tests.dll
-%GallioEcho% test\WebApiContrib.Formatting.CollectionJson.Client.Tests\bin\%config%\WebApiContrib.Formatting.CollectionJson.Client.Tests.dll
-%GallioEcho% test\WebApiContrib.Formatting.CollectionJson.Server.Tests\bin\%config%\WebApiContrib.Formatting.CollectionJson.Server.Tests.dll
+call "%GallioEcho%" test\WebApiContrib.CollectionJson.Tests\bin\%config%\WebApiContrib.CollectionJson.Tests.dll
+call "%GallioEcho%" test\WebApiContrib.Formatting.CollectionJson.Client.Tests\bin\%config%\WebApiContrib.Formatting.CollectionJson.Client.Tests.dll
+call "%GallioEcho%" test\WebApiContrib.Formatting.CollectionJson.Server.Tests\bin\%config%\WebApiContrib.Formatting.CollectionJson.Server.Tests.dll
 
 REM NuGet Package Creation
 
