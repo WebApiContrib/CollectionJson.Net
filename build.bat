@@ -19,9 +19,9 @@ REM NuGet Package Restore
 call %nuget% install src\WebApiContrib.Formatting.CollectionJson.Client\packages.config -OutputDirectory %cd%\src\packages -NonInteractive -NoCache -Verbosity Detailed
 call %nuget% install src\WebApiContrib.Formatting.CollectionJson.Server\packages.config -OutputDirectory %cd%\src\packages -NonInteractive -NoCache -Verbosity Detailed
 
-call %nuget% install test\WebApiContrib.CollectionJson.Tests\packages.config -OutputDirectory %cd%\test\packages -NonInteractive -NoCache -Verbosity Detailed
-call %nuget% install test\WebApiContrib.Formatting.CollectionJson.Client.Tests\packages.config -OutputDirectory %cd%\test\packages -NonInteractive -NoCache -Verbosity Detailed
-call %nuget% install test\WebApiContrib.Formatting.CollectionJson.Server.Tests\packages.config -OutputDirectory %cd%\test\packages -NonInteractive -NoCache -Verbosity Detailed
+call %nuget% install test\WebApiContrib.CollectionJson.Tests\packages.config -OutputDirectory %cd%\src\packages -NonInteractive -NoCache -Verbosity Detailed
+call %nuget% install test\WebApiContrib.Formatting.CollectionJson.Client.Tests\packages.config -OutputDirectory %cd%\src\packages -NonInteractive -NoCache -Verbosity Detailed
+call %nuget% install test\WebApiContrib.Formatting.CollectionJson.Server.Tests\packages.config -OutputDirectory %cd%\src\packages -NonInteractive -NoCache -Verbosity Detailed
 
 REM Compilation
 
