@@ -121,7 +121,7 @@ namespace WebApiContrib.CollectionJson.Tests
             }
 
             [Fact]
-            public void WhenValueIsPassedThenShouldSToreTheValue()
+            public void WhenValueIsPassedThenShouldStoreTheValue()
             {
                 _obj.Members["Test3"].ShouldEqual("TestValue");
             }

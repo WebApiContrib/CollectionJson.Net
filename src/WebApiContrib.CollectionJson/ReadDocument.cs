@@ -16,6 +16,6 @@ namespace WebApiContrib.CollectionJson
         }
 
         [DataMember(Name = "collection")]
-        public Collection Collection { get; set; }
+        public Collection Collection { get; private set; }
     }
 }
