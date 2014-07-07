@@ -15,8 +15,8 @@ namespace WebApiContrib.CollectionJson
             Members = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
         }
         
-        protected IDictionary<string, object> Members { get; private set; } 
-
+        protected IDictionary<string, object> Members { get; private set; }
+ 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             var name = binder.Name;
@@ -58,7 +58,7 @@ namespace WebApiContrib.CollectionJson
         {
             Members[key] = value;
         }
-
+       
         public dynamic Extensions()
         {
             return this;

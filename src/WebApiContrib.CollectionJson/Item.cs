@@ -16,39 +16,19 @@ namespace WebApiContrib.CollectionJson
         }
 
         [DataMember(Name = "href")]
-        public Uri Href
-        {
-            get { return GetValue<Uri>("Href"); }
-            set { SetValue("Href", value); }
-        }
+        public Uri Href { get; set; }
 
         [DataMember(Name = "rel")]
-        public string Rel
-        {
-            get { return GetValue<string>("Rel"); }
-            set { SetValue("Rel", value); }
-        }
+        public string Rel { get; set; }
 
         [DataMember(Name = "rt")]
-        public string Rt
-        {
-            get { return GetValue<string>("Rt"); }
-            set { SetValue("Rt", value); }
-        }
+        public string Rt { get; set; }
 
         [DataMember(Name = "data")]
-        public IList<Data> Data
-        {
-            get { return GetValue<IList<Data>>("Data"); }
-            private set { SetValue("Data", value); }
-        }
+        public IList<Data> Data { get; private set; }
 
         [DataMember(Name = "links")]
-        public IList<Link> Links
-        {
-            get { return GetValue<IList<Link>>("Links"); }
-            private set { SetValue("Links", value); }
-        }
+        public IList<Link> Links { get; private set; }
         
     }
 }

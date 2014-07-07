@@ -15,6 +15,6 @@ namespace WebApiContrib.CollectionJson
         }
 
         [DataMember(Name = "Data")]
-        public IList<Data> Data { get; set; }
+        public IList<Data> Data { get; private set; }
     }
 }
