@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
@@ -46,7 +47,8 @@ namespace WebApiContrib.CollectionJson
         {
             object val;
             var found = Members.TryGetValue(key, out val);
-            if (found)            
+
+            if (found)
                 return (T) val;
 
             return default(T);
