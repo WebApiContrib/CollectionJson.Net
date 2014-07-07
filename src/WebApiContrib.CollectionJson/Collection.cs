@@ -19,46 +19,22 @@ namespace WebApiContrib.CollectionJson
         }
 
         [DataMember(Name="version")]
-        public string Version
-        {
-            get { return GetValue<string>("Version"); }
-            set { SetValue("Version", value); }
-        }
-
+        public string Version { get; set; }
+ 
         [DataMember(Name = "href")]
-        public Uri Href
-        {
-            get { return GetValue<Uri>("Href"); }
-            set { SetValue("Href", value); }
-        }
+        public Uri Href { get; set; }
 
         [DataMember(Name = "links")]
-        public IList<Link> Links
-        {
-            get { return GetValue<IList<Link>>("Links"); }
-            private set { SetValue("Links", value); }
-        }
-
+        public IList<Link> Links { get; private set; }
+ 
         [DataMember(Name = "items")]
-        public IList<Item> Items
-        {
-            get { return GetValue<IList<Item>>("Items"); }
-            private set { SetValue("Items", value); }
-        }
+        public IList<Item> Items { get; private set; }
 
         [DataMember(Name = "queries")]
-        public IList<Query> Queries
-        {
-            get { return GetValue<IList<Query>>("Queries"); }
-            private set { SetValue("Queries", value); }
-        }
-
+        public IList<Query> Queries { get; private set; }
+ 
         [DataMember(Name = "template")]
-        public Template Template
-        {
-            get { return GetValue<Template>("Template"); }
-            set { SetValue("Template", value); }
-        }
+        public Template Template { get; private set; }
     }
 
 }
