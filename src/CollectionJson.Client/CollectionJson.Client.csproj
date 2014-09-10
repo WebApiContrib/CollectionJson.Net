@@ -62,6 +62,9 @@
     <Compile Include="..\..\common\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="CollectionJsonContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CollectionJsonContractResolver.cs">
       <SubType>Code</SubType>
     </Compile>

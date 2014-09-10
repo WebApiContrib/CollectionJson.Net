@@ -74,6 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionJsonContentTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CollectionJsonContractResolverTest.cs" />
     <Compile Include="CollectionJsonFormatterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
