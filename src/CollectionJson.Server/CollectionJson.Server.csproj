@@ -80,7 +80,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="CollectionJson.Server..nuspec">
+    <None Include="CollectionJson.Server.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
