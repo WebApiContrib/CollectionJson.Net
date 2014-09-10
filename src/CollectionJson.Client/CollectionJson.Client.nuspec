@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>WebApiContrib.Formatting.CollectionJson.Client</id>
+        <id>CollectionJson.Client</id>
         <version>$version$</version>
         <title>Collection+Json Client Library</title>
         <authors>Glenn Block</authors>
@@ -15,7 +15,7 @@
         <tags>collectionjson httpclient</tags>
         <dependencies>
             <dependency id="Microsoft.AspNet.WebApi.Client" version="5.0"/>
-            <dependency id="WebApiContrib.CollectionJson" />
+            <dependency id="CollectionJson" />
         </dependencies>
     </metadata>
     <files>
