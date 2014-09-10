@@ -21,7 +21,7 @@ namespace CollectionJson.Client
             SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             SerializerSettings.ContractResolver =
-                        new CamelCasePropertyNamesContractResolver();
+                        new CollectionJsonContractResolver();
         }
 
         public override bool CanWriteType(Type type)
