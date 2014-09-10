@@ -1,7 +1,8 @@
 ﻿using FriendApi.Models;
-using WebApiContrib.CollectionJson;
-using WebApiContrib.Formatting.CollectionJson.Client;
-using WebApiContrib.Formatting.CollectionJson;
+using CollectionJson;
+using CollectionJson.Client;
+using CollectionJson.Server;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ using System.Text;
 using System.Web.Http;
 using System.Net.Http;
 using System.Net;
-using WebApiContrib.Formatting.CollectionJson.Server;
 
 namespace FriendApi.Controllers
 {

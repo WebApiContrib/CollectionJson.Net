@@ -5,11 +5,11 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendApi", "FriendApi.csproj", "{EAB2A98D-2059-45B2-8DFF-42B8326D5531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.CollectionJson", "..\..\src\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj", "{B9F7BC64-7924-4928-910D-2E9E03DC682F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionJson", "..\..\src\CollectionJson\CollectionJson.csproj", "{B9F7BC64-7924-4928-910D-2E9E03DC682F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Client", "..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj", "{E86C985A-ECB3-4065-98C3-CBB2039C7170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionJson.Server", "..\..\src\CollectionJson.Server\CollectionJson.Server.csproj", "{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiContrib.Formatting.CollectionJson.Server", "..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj", "{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionJson.Client", "..\..\src\CollectionJson.Client\CollectionJson.Client.csproj", "{E86C985A-ECB3-4065-98C3-CBB2039C7170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,18 +25,14 @@ Global
 		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F7BC64-7924-4928-910D-2E9E03DC682F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F606AFBF-1ADA-40C5-9CDE-5E6E9F2E3F77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F98FD89-D157-4623-BB7A-D240BDCD99A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E86C985A-ECB3-4065-98C3-CBB2039C7170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

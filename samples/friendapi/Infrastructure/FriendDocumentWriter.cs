@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 using FriendApi.Models;
-using WebApiContrib.CollectionJson;
+using CollectionJson;
 using System;
 using System.Collections.Generic;
 

@@ -2,7 +2,7 @@
 using Autofac.Integration.WebApi;
 using FriendApi.Infrastructure;
 using FriendApi.Models;
-using WebApiContrib.CollectionJson;
+using CollectionJson;
 using System.Web.Http;
 
 namespace FriendApi

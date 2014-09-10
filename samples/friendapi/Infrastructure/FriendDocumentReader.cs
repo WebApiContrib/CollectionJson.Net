@@ -1,5 +1,5 @@
 ﻿using FriendApi.Models;
-using WebApiContrib.CollectionJson;
+using CollectionJson;
 using System;
 
 namespace FriendApi.Infrastructure

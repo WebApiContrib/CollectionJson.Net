@@ -94,24 +94,24 @@
     <Compile Include="ServiceConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebApiContrib.CollectionJson\WebApiContrib.CollectionJson.csproj">
-      <Project>{B9F7BC64-7924-4928-910D-2E9E03DC682F}</Project>
-      <Name>WebApiContrib.CollectionJson</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Client\WebApiContrib.Formatting.CollectionJson.Client.csproj">
-      <Project>{E86C985A-ECB3-4065-98C3-CBB2039C7170}</Project>
-      <Name>WebApiContrib.Formatting.CollectionJson.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\WebApiContrib.Formatting.CollectionJson.Server\WebApiContrib.Formatting.CollectionJson.Server.csproj">
-      <Project>{f606afbf-1ada-40c5-9cde-5e6e9f2e3f77}</Project>
-      <Name>WebApiContrib.Formatting.CollectionJson.Server</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CollectionJson.Client\CollectionJson.Client.csproj">
+      <Project>{e86c985a-ecb3-4065-98c3-cbb2039c7170}</Project>
+      <Name>CollectionJson.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\CollectionJson.Server\CollectionJson.Server.csproj">
+      <Project>{f606afbf-1ada-40c5-9cde-5e6e9f2e3f77}</Project>
+      <Name>CollectionJson.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\CollectionJson\CollectionJson.csproj">
+      <Project>{b9f7bc64-7924-4928-910d-2e9e03dc682f}</Project>
+      <Name>CollectionJson</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,12 +1,12 @@
 ﻿using FriendApi;
-using WebApiContrib.Formatting.CollectionJson;
+using CollectionJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Http.SelfHost;
 
-namespace WebApiContrib.Formatting.CollectionJson
+namespace FriendApi
 {
     class Program
     {

@@ -1,4 +1,4 @@
-﻿using WebApiContrib.CollectionJson;
+﻿using CollectionJson;
 using System;
 
 namespace FriendApi.Models
