@@ -62,9 +62,9 @@ namespace CollectionJson.Client.Tests
         }
 
         [Fact]
-        public void WhenInitializedShouldSetCamelCasePropertyResolver()
+        public void WhenInitializedShouldSetCollectionJsonContractResolver()
         {
-            formatter.SerializerSettings.ContractResolver.ShouldBeType<CamelCasePropertyNamesContractResolver>();
+            formatter.SerializerSettings.ContractResolver.ShouldBeType<CollectionJsonContractResolver>();
         }
 
         [Fact]
