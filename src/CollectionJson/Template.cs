@@ -7,7 +7,7 @@ using System.Text;
 namespace CollectionJson
 {
     [DataContract]
-    public class Template
+    public class Template : ExtensibleObject
     {
         public Template()
         {

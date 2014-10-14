@@ -7,7 +7,7 @@ using System.Text;
 namespace CollectionJson
 {
     [DataContract]
-    public class Error
+    public class Error : ExtensibleObject
     {
         [DataMember(Name = "title")]
         public string Title { get; set; }
