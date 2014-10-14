@@ -20,5 +20,8 @@ namespace CollectionJson
 
         [DataMember(Name = "render")]
         public String Render { get; set; }
+
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
     }
 }
