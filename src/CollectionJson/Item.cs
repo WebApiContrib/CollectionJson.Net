@@ -25,10 +25,10 @@ namespace CollectionJson
         public string Rt { get; set; }
 
         [DataMember(Name = "data")]
-        public IList<Data> Data { get; private set; }
+        public IList<Data> Data { get; set; }
 
         [DataMember(Name = "links")]
-        public IList<Link> Links { get; private set; }
+        public IList<Link> Links { get; set; }
         
     }
 }

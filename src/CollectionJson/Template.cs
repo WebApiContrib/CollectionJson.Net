@@ -15,6 +15,6 @@ namespace CollectionJson
         }
 
         [DataMember(Name = "Data")]
-        public IList<Data> Data { get; private set; }
+        public IList<Data> Data { get; set; }
     }
 }
