@@ -10,6 +10,6 @@ namespace CollectionJson
     public class WriteDocument : IWriteDocument
     {
         [DataMember(Name = "template")]
-        public Template Template { get; private set; }
+        public Template Template { get; set; }
     }
 }
