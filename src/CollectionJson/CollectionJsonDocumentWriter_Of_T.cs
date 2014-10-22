@@ -9,12 +9,12 @@ namespace CollectionJson
     {
         public virtual IReadDocument Write(IEnumerable<TItem> data, Uri uri)
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public virtual IReadDocument Write(IEnumerable<TItem> data)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }
