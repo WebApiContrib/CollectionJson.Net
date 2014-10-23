@@ -1,4 +1,6 @@
-﻿namespace CollectionJson
+﻿using System;
+
+namespace CollectionJson
 {
     public static class CollectionJsonDocumentWriterExtensions
     {
