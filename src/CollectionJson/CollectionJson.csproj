@@ -46,6 +46,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Collection.cs" />
+    <Compile Include="CollectionJsonDocumentWriter_Of_T.cs" />
     <Compile Include="CollectionJsonDocumentWriterExtensions.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Error.cs" />
