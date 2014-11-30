@@ -19,6 +19,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\CollectionJson.Client.dll" target="lib\portable-net45+win8+wp8+monotouch+monoandroid" />
+        <file src="bin\Release\CollectionJson.Client.dll" target="lib\portable-net40+sl50+win8+wpa81+wp8+monotouch+monoandroid" />
     </files>
 </package>
