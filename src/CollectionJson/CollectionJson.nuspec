@@ -15,6 +15,6 @@
         <tags>collectionjson</tags>
     </metadata>
     <files>
-        <file src="bin\Release\CollectionJson.dll" target="lib\portable-net40+sl5+win8+wp8+monotouch+monoandroid" />
+        <file src="bin\Release\CollectionJson.dll" target="lib\portable-net40+sl50+win8+wpa81+wp8+monotouch+monoandroid" />
     </files>
 </package>
