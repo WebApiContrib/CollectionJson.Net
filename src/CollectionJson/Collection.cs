@@ -10,6 +10,8 @@ namespace CollectionJson
     [DataContract]
     public class Collection : ExtensibleObject
     {
+        public const string MediaType = "application/vnd.collection+json";
+
         public Collection()
         {
             Links = new List<Link>();
