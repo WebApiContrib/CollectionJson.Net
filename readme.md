@@ -1,5 +1,7 @@
 # CollectionJson.NET
 
+[![collectionjson MyGet Build Status](https://www.myget.org/BuildSource/Badge/collectionjson?identifier=0f0fe557-4dbb-441d-bc44-6bf81c736ceb)](https://www.myget.org/)
+
 This library provides support for using the [Collection+JSON] (http://amundsen.com/media-types/collection/) hypermedia mediatype authored by [Mike Amundsen] (http://twitter.com/mamund).
 
 ## Features

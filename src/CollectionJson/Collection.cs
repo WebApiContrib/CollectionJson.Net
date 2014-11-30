@@ -4,12 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
+using DynamicUtils;
 
 namespace CollectionJson
 {
     [DataContract]
     public class Collection : ExtensibleObject
     {
+        public const string MediaType = "application/vnd.collection+json";
+
         public Collection()
         {
             Links = new List<Link>();

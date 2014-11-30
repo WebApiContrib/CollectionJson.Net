@@ -37,6 +37,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamicUtils">
+      <HintPath>..\packages\DynamicUtils.1.0.1\lib\portable-net40+sl50+win8+wpa81+wp8+monotouch+monoandroid\DynamicUtils.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -50,7 +53,6 @@
     <Compile Include="CollectionJsonDocumentWriterExtensions.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Error.cs" />
-    <Compile Include="ExtensibleObject.cs" />
     <Compile Include="ICollectionJsonDocumentReader_Of_T.cs" />
     <Compile Include="ICollectionJsonDocumentWriter_Of_T.cs" />
     <Compile Include="IEnumerable_Of_DataExtensions.cs" />
@@ -69,6 +71,7 @@
     <None Include="CollectionJson.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using CollectionJson;
@@ -80,11 +82,11 @@ namespace CollectionJson.Client.Tests
         }
 
         [Fact]
-        public void WhenTypeImplementsIReadDocumentThenWriteToStreamAsyncWritesCollectionJson()
+        public async Task WhenTypeImplementsIReadDocumentThenWriteToStreamAsyncWritesCollectionJson()
         {
             var doc = new TestReadDocument();
             var stream = new MemoryStream();
-            formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null).Wait();
+            await formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null);
             var reader = new StreamReader(stream);
             stream.Position = 0;
             var content = reader.ReadToEnd();
@@ -93,15 +95,32 @@ namespace CollectionJson.Client.Tests
         }
 
         [Fact]
-        public void WhenTypeImplementsIWriteDocumentThenWriteToStreamAsyncWritesCollectionJson()
+        public async Task WhenTypeImplementsIWriteDocumentThenWriteToStreamAsyncWritesCollectionJson()
         {
             var doc = new TestWriteDocument();
             var stream = new MemoryStream();
-            formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null).Wait();
+            await formatter.WriteToStreamAsync(doc.GetType(), doc, stream, null, null);
             var reader = new StreamReader(stream);
             stream.Position = 0;
-            var content = reader.ReadToEnd();
+            var content = await reader.ReadToEndAsync();
             content.ShouldContain("\"TestValue\"");
+        }
+
+        [Fact]
+        public async Task WhenTypeImplementsIWriteDocumentThenReadToStreamAsyncReturnsWriteDocument()
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            await writer.WriteLineAsync("{\"template\":{\"data\":[{\"name\":\"value\"}]}}");
+            await writer.FlushAsync();
+            var content = new StreamContent(stream);
+            content.Headers.ContentLength = stream.Position-1;
+            stream.Position = 0;
+            content.Headers.ContentType = new MediaTypeHeaderValue(Collection.MediaType);
+            var doc = (IWriteDocument) await formatter.ReadFromStreamAsync(typeof (IWriteDocument), stream, content, null);
+            doc.ShouldNotBeNull();
+            doc.Template.ShouldNotBeNull();
+            doc.Template.Data.GetDataByName("value").ShouldNotBeNull();
         }
 
         public class TestReadDocument : IReadDocument
