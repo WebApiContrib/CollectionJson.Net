@@ -30,7 +30,7 @@ namespace CollectionJson.Client
             _readDocument = new ReadDocument();
             _readDocument.Collection = collection;
 
-            Headers.ContentType = new MediaTypeHeaderValue("application/vnd.collection+json");
+            Headers.ContentType = new MediaTypeHeaderValue(Collection.MediaType);
         }
 
 

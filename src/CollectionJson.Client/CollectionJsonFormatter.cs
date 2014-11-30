@@ -1,5 +1,8 @@
-﻿using System.Reflection;
+﻿using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -15,9 +18,9 @@ namespace CollectionJson.Client
 {
     public class CollectionJsonFormatter : JsonMediaTypeFormatter
     {
-        public CollectionJsonFormatter()
+         public CollectionJsonFormatter()
         {
-            SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/vnd.collection+json"));
+            SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue(Collection.MediaType));
             SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             SerializerSettings.ContractResolver =
@@ -51,6 +54,17 @@ namespace CollectionJson.Client
             }
 
             return base.WriteToStreamAsync(type, value, writeStream, content, transportContext);
+        }
+
+
+        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        {
+            if (typeof (IWriteDocument).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) &
+                type != typeof (WriteDocument))
+            {
+                return base.ReadFromStreamAsync(typeof (WriteDocument), readStream, content, formatterLogger);
+            }
+            return base.ReadFromStreamAsync(type, readStream, content, formatterLogger);
         }
 
         private class ReadDocumentDecorator : IReadDocument
