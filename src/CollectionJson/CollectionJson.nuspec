@@ -14,6 +14,9 @@
         <copyright>2013 Glenn Block</copyright>
         <tags>collectionjson</tags>
     </metadata>
+     <dependencies>
+      <dependency id="DynamicUtils" version="1.0.1" />
+    </dependencies>
     <files>
         <file src="bin\Release\CollectionJson.dll" target="lib\portable-net40+sl50+win8+wpa81+wp8+monotouch+monoandroid" />
     </files>
