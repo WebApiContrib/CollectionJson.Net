@@ -38,6 +38,9 @@ namespace CollectionJson
  
         [DataMember(Name = "template")]
         public Template Template { get; private set; }
+
+        [DataMember(Name = "error")]
+        public Error Error { get; set; }
     }
 
 }

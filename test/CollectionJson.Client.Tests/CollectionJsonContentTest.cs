@@ -23,5 +23,26 @@ namespace CollectionJson.Client.Tests
             var json = reader.ReadToEnd();
             json.ShouldContain("\"collection\"");
         }
+
+        [Fact]
+        public async void WhenCreatingCollectionJsonContentWithErrorObjectIsSerializedWithError()
+        {
+            var coll = new Collection()
+            {
+                Error = new Error()
+                {
+                    Code = "1234",
+                    Message = "Hello world",
+                    Title = "An error occurred"
+                }
+            };
+            var content = new CollectionJsonContent(coll);
+            var stream = new MemoryStream();
+            await content.CopyToAsync(stream);
+            var reader = new StreamReader(stream);
+            stream.Position = 0;
+            var json = reader.ReadToEnd();
+            json.ShouldContain("\"error\"");
+        }
     }
 }
