@@ -122,7 +122,7 @@ CollectionJson documents contain one or more items which are represented with th
 Member      | Description
 ----------- | -----------------------------------------------------------------------------------------------
 Rel         | The link relation
-Href        | Url for dreferencing the item
+Href        | Url for referencing the item
 Rt          | Describes the item
 Data        | Contains the data elements for the item.
 Links       | Contains the links for the item
